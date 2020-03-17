@@ -12,9 +12,9 @@ namespace climb
         float vertical;
         Vector3 moveDir;
         float moveAmount;
-        Vector3 camYForward;
+        //Vector3 camYForward;
 
-        Transform camHolder;
+        //Transform camHolder;
 
         Rigidbody rigid;
         Collider col;
@@ -38,7 +38,7 @@ namespace climb
 
             col = GetComponent<Collider>();
 
-            camHolder = CameraHolder.instance.transform;
+            //camHolder = CameraHolder.instance.transform;
             anim = GetComponentInChildren<Animator>();
 
             fc = GetComponent < FreeClimb>();
@@ -62,9 +62,9 @@ namespace climb
             horizontal = Input.GetAxis("Horizontal");
             vertical = Input.GetAxis("Vertical");
 
-            camYForward = camHolder.forward;
-            Vector3 v = vertical * camHolder.forward;
-            Vector3 h = horizontal * camHolder.right;
+            //camYForward = camHolder.forward;
+            Vector3 v = vertical * transform.forward;
+            Vector3 h = horizontal * transform.right;
 
             moveDir = (v + h).normalized;
             moveAmount = Mathf.Clamp01((Mathf.Abs(horizontal) + Mathf.Abs(vertical)));
@@ -148,7 +148,7 @@ namespace climb
             origin.y -= 0.4f;
             Vector3 dir = -transform.up;
             RaycastHit hit;
-            DebugLine.instance.SetLine(origin, origin+dir,0);
+            //DebugLine.instance.SetLine(origin, origin+dir,0);
             if (Physics.Raycast(origin, dir, out hit, 0.41f))
             {
                 Debug.Log("ost2");
