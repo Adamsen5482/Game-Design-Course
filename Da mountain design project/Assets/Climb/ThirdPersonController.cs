@@ -25,11 +25,23 @@ namespace climb
         public float rotateSpeed = 9;
         public float jumpSpeed = 15;
 
+        bool climfOff;
+        float climbTimer;
         bool OnGround;
         bool KeepOfGround;
         float savedTime;
 
-        bool isClimbing;
+        public bool isClimbing;
+
+        public bool Aiming = false;
+        
+        public Transform player;
+        public Transform pivot;
+        public Transform camTarget;
+        public bool useOffsetValues;
+        public Vector3 offset;
+
+
         void Start()
         {
             rigid = GetComponent<Rigidbody>();
@@ -85,8 +97,50 @@ namespace climb
 
         }
 
+        public void aim()
+        {
+            return;
+            Aiming = true;
+            if (!useOffsetValues)
+            {
+                offset = player.position - transform.position;
+            }
+
+            pivot.transform.position = player.transform.position;
+            pivot.transform.parent = player.transform;
+
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
         private void Update()
         {
+            if (Input.GetButtonUp("Jump")==true)
+            {
+                aim();
+            }
+
+            if (Aiming)
+            {
+
+
+                float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
+                player.Rotate(0, horizontal, 0);
+
+                float vertical = Input.GetAxis("Mouse Y") * rotateSpeed;
+                pivot.Rotate(-vertical, 0, 0);
+
+
+
+                float desiredYAngle = player.eulerAngles.y;
+                float desiredXAngle = pivot.eulerAngles.x;
+                Quaternion rotation = Quaternion.Euler(desiredXAngle, desiredYAngle, 0);
+                transform.position = player.position - (rotation * offset);
+
+                transform.LookAt(camTarget);
+                return;
+            }
+
+
             if (isClimbing)
             {
                 fc.Tick(Time.deltaTime);
@@ -108,10 +162,24 @@ namespace climb
 
             if (!OnGround && !KeepOfGround)
             {
-                isClimbing =  fc.checkForClimb();
-                if (isClimbing)
+                if (!climfOff)
                 {
-                    DisableController();
+
+
+
+                    isClimbing = fc.checkForClimb();
+                    if (isClimbing)
+                    {
+                        DisableController();
+                    }
+                }
+            }
+
+            if (climfOff)
+            {
+                if (Time.realtimeSinceStartup - climbTimer > 1)
+                {
+                    climfOff = false;
                 }
             }
             anim.SetFloat("move", moveAmount);
@@ -148,7 +216,7 @@ namespace climb
             origin.y -= 0.4f;
             Vector3 dir = -transform.up;
             RaycastHit hit;
-            DebugLine.instance.SetLine(origin, origin+dir,0);
+
             if (Physics.Raycast(origin, dir, out hit, 0.41f))
             {
                 Debug.Log("ost2");
@@ -166,8 +234,15 @@ namespace climb
 
         public void EnableController()
         {
+           
             rigid.isKinematic = false;
             col.enabled = true;
+            anim.CrossFade("blend", 0.2f);
+            anim.SetBool("OnAir", true);
+            climfOff = true;
+            climbTimer = Time.realtimeSinceStartup;
+            isClimbing = false;
+               
         }
     }
 

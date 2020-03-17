@@ -47,10 +47,13 @@ namespace climb
             //checkForClimb();
         }
         // Update is called once per frame
-    
+
 
         public void Tick(float d_time)
         {
+         
+            
+
             this.delta = d_time;
             if (!inPosition)
             {
@@ -60,7 +63,12 @@ namespace climb
 
             if (!isLerping)
             {
-                 horizontal = Input.GetAxis("Horizontal");
+                bool cancel = Input.GetKeyUp(KeyCode.X);
+                if (cancel) { 
+                    CancelClimb();
+                }
+
+                horizontal = Input.GetAxis("Horizontal");
                  vertical = Input.GetAxis("Vertical");
                 float m = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
 
@@ -110,6 +118,9 @@ namespace climb
                 Vector3 cp = Vector3.Lerp(startPos, targetPos, T);
                 transform.position = cp;
                 transform.rotation = Quaternion.Slerp(transform.rotation, helper.rotation, delta * rotateSpeed);
+                LookForGround();
+
+               
             }
         }
         bool CanMove(Vector3 movedir)
@@ -118,7 +129,7 @@ namespace climb
             float dis = rayToMoveDir;
             Vector3 dir = movedir;
 
-            DebugLine.instance.SetLine(origin, origin + (dir * dis), 0);
+
             //raycast towars the direction you want to move 
             RaycastHit hit;
 
@@ -132,7 +143,7 @@ namespace climb
             dir = helper.forward;
             float dis2 = rayForwardsToWall;
             //raycast forward to the wall
-            DebugLine.instance.SetLine(origin, origin + (dir * dis2), 1);
+
             if (Physics.Raycast(origin, dir, out hit, dis2))
             {
                 helper.position = posWithOffset(origin, hit.point);
@@ -142,7 +153,7 @@ namespace climb
 
             origin = origin + (dir * dis2);
             dir = -movedir;
-            DebugLine.instance.SetLine(origin, origin + dir, 1);
+
             //corner raycast
             if (Physics.Raycast(origin, dir, out hit, rayForwardsToWall))
             {
@@ -155,7 +166,7 @@ namespace climb
                 // return false;
                 origin += dir * dis2;
             dir = -Vector3.up;
-            DebugLine.instance.SetLine(origin, origin + dir , 2);
+            //DebugLine.instance.SetLine(origin, origin + dir , 2);
 
             if (Physics.Raycast(origin, dir, out hit, dis2))
             {
@@ -219,7 +230,7 @@ namespace climb
         void initForClimb(RaycastHit hit)
         {
             isClimbing = true;
-
+            a_hook.enabled = true;
             helper.transform.rotation = Quaternion.LookRotation(-hit.normal);
             startPos = transform.position;
             targetPos = hit.point + (hit.normal * wallOffset);
@@ -233,13 +244,21 @@ namespace climb
         {
             RaycastHit hit;
             Vector3 origin = transform.position;
-            Vector3 dir = -Vector3.up;
-            if(Physics.Raycast(origin, dir, out hit, 1.2f, ignoreLayer))
+            Vector3 dir = -transform.up;
+            if(Physics.Raycast(origin, dir, out hit, rayToMoveDir+0.05f, ignoreLayer))
             {
-                isClimbing = false;
-                tpc.EnableController();
+                CancelClimb();
+               
             }
+            return;
+        }
 
+        void CancelClimb()
+        {
+            isClimbing = false;
+            tpc.EnableController();
+
+            a_hook.enabled = false;
         }
     }
     [System.Serializable]
