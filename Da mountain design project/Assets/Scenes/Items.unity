@@ -282,7 +282,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 1748043cfb24529408036b4c387e5097,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2338265
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1748043cfb24529408036b4c387e5097,
         type: 3}
@@ -357,7 +357,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: b84d627b93ec27247b9f4bf2c813048c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.86378217
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: b84d627b93ec27247b9f4bf2c813048c,
         type: 3}
@@ -441,7 +441,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953371540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.03911, y: -4.6473484, z: 57.54}
+  m_LocalPosition: {x: 0, y: 0, z: 57.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1852925097}
@@ -467,7 +467,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: c581cb8703e8a8541a27736902b8af67,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4274566
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c581cb8703e8a8541a27736902b8af67,
         type: 3}
@@ -542,7 +542,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: dee9b6f0c162a464cbbe5a5456299864,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6213609
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dee9b6f0c162a464cbbe5a5456299864,
         type: 3}
@@ -759,7 +759,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: af2f328e18e551443b24469fcd20edab,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4633418
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: af2f328e18e551443b24469fcd20edab,
         type: 3}
