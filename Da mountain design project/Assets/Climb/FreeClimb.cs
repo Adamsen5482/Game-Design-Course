@@ -118,7 +118,7 @@ namespace climb
             float dis = rayToMoveDir;
             Vector3 dir = movedir;
 
-            DebugLine.instance.SetLine(origin, origin + (dir * dis), 0);
+            //DebugLine.instance.SetLine(origin, origin + (dir * dis), 0);
             //raycast towars the direction you want to move 
             RaycastHit hit;
 
@@ -132,7 +132,7 @@ namespace climb
             dir = helper.forward;
             float dis2 = rayForwardsToWall;
             //raycast forward to the wall
-            DebugLine.instance.SetLine(origin, origin + (dir * dis2), 1);
+            //DebugLine.instance.SetLine(origin, origin + (dir * dis2), 1);
             if (Physics.Raycast(origin, dir, out hit, dis2))
             {
                 helper.position = posWithOffset(origin, hit.point);
@@ -142,7 +142,7 @@ namespace climb
 
             origin = origin + (dir * dis2);
             dir = -movedir;
-            DebugLine.instance.SetLine(origin, origin + dir, 1);
+            //DebugLine.instance.SetLine(origin, origin + dir, 1);
             //corner raycast
             if (Physics.Raycast(origin, dir, out hit, rayForwardsToWall))
             {
@@ -155,7 +155,7 @@ namespace climb
                 // return false;
                 origin += dir * dis2;
             dir = -Vector3.up;
-            DebugLine.instance.SetLine(origin, origin + dir , 2);
+            //DebugLine.instance.SetLine(origin, origin + dir , 2);
 
             if (Physics.Raycast(origin, dir, out hit, dis2))
             {
