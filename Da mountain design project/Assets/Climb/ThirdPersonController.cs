@@ -22,7 +22,7 @@ namespace climb
         Collider col;
         Animator anim;
 
-        FreeClimb fc;
+        public FreeClimb fc;
         public float moveSpeed = 4;
         public float rotateSpeed = 9;
         public float jumpSpeed = 15;
@@ -59,7 +59,7 @@ namespace climb
             //camHolder = CameraHolder.instance.transform;
             anim = GetComponentInChildren<Animator>();
 
-            fc = GetComponent < FreeClimb>();
+            fc = GetComponent <FreeClimb>();
             anim.transform.GetChild(0).GetComponent<Animator>();
         }
 
@@ -176,13 +176,14 @@ namespace climb
 
 
 
-            //jump();
+            jump();
 
             if (!OnGround && !KeepOfGround)
             {
                 if (!climfOff)
                 {
-
+                    
+                    Debug.Log(isClimbing);
 
 
                     isClimbing = fc.checkForClimb();
@@ -214,13 +215,9 @@ namespace climb
 
                 if (jump)
                 {
-                    /*
-                    Vector3 v = rigid.velocity;
-                    v.y = jumpSpeed;
-                    rigid.velocity = v;
                     savedTime = Time.realtimeSinceStartup;
                     KeepOfGround = true;
-                    */
+                    
                 }
             }
         }
@@ -239,7 +236,7 @@ namespace climb
 
             if (Physics.Raycast(origin, dir, out hit, 0.41f))
             {
-                Debug.Log("ost2");
+
                 return true;
             }
                 
@@ -250,21 +247,24 @@ namespace climb
         {
             /*
             rigid.isKinematic = true;
-            col.enabled = false;
             */
+            col.enabled = false;
+            
             playerMovement.enabled = false;
+            Debug.Log("disable controller");
+           
         }
 
         public void EnableController()
         {
             playerMovement.enabled = true;
-            //rigid.isKinematic = false;
+           //rigid.isKinematic = false;
             col.enabled = true;
             anim.CrossFade("blend", 0.2f);
-            anim.SetBool("OnAir", true);
+           anim.SetBool("OnAir", true);
             climfOff = true;
             climbTimer = Time.realtimeSinceStartup;
-            isClimbing = false;
+           isClimbing = false;
                
         }
     }

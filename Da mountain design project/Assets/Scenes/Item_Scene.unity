@@ -575,7 +575,8 @@ GameObject:
   - component: {fileID: 690309608}
   - component: {fileID: 690309607}
   - component: {fileID: 690309609}
-  m_Layer: 0
+  - component: {fileID: 690309611}
+  m_Layer: 8
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,6 +633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904a79cf31648b548bee4add0f9994ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fc: {fileID: 0}
   moveSpeed: 4
   rotateSpeed: 9
   jumpSpeed: 15
@@ -658,6 +660,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &690309611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690309606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc1e213aed3345744bf6bf3caf3789d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 6360466938854141482}
+  isClimbing: 0
+  isMid: 0
+  possOffset: 0.5
+  rayToMoveDir: 0.5
+  wallOffset: 0.45
+  speed: 0.2
+  climbSpeed: 3
+  rotateSpeed: 5
+  rayForwardsToWall: 1
+  baseIKsnapshot:
+    rh: {x: 0, y: 0, z: 0}
+    lh: {x: 0, y: 0, z: 0}
+    lf: {x: -0.43, y: -1.2, z: 0}
+    rf: {x: 0.2, y: -1.2, z: 0}
+  a_hook: {fileID: 3126914231826122540}
+  tpc: {fileID: 690309609}
 --- !u!1 &771574579
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,7 +701,7 @@ GameObject:
   - component: {fileID: 771574582}
   - component: {fileID: 771574581}
   - component: {fileID: 771574583}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main_Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -808,7 +839,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1268660042}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CameraParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1879,6 +1910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2107225260881016120}
   - component: {fileID: 6360466938854141482}
+  - component: {fileID: 3126914231826122540}
   m_Layer: 8
   m_Name: boxMan
   m_TagString: Untagged
@@ -1886,6 +1918,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3126914231826122540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3126914231826122539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f43a7759e915d340b378b4c61df6e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  w_rh: 0
+  w_lh: 0
+  w_rf: 0
+  w_lf: 0
+  lerpspeed: 5
+  walloffset: 0.1
 --- !u!1 &3283238355149134372
 GameObject:
   m_ObjectHideFlags: 0

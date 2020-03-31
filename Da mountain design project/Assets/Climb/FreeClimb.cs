@@ -118,7 +118,7 @@ namespace climb
                 Vector3 cp = Vector3.Lerp(startPos, targetPos, T);
                 transform.position = cp;
                 transform.rotation = Quaternion.Slerp(transform.rotation, helper.rotation, delta * rotateSpeed);
-                LookForGround();
+                //LookForGround();
 
                
             }
@@ -199,7 +199,9 @@ namespace climb
             }
 
             Vector3 tp = Vector3.Lerp(startPos, targetPos, T);
-            transform.position = tp;
+            Debug.Log(transform.position);
+            Debug.Log(tp);
+            //transform.position = tp;
             transform.rotation = Quaternion.Slerp(transform.rotation, helper.rotation, delta * rotateSpeed);
         }
 
@@ -224,7 +226,7 @@ namespace climb
                 initForClimb(hit);
                 return true;
             }
-            return false;
+            return true;
         }
 
         void initForClimb(RaycastHit hit)
@@ -240,18 +242,18 @@ namespace climb
 
         }
 
-        void LookForGround()
-        {
-            RaycastHit hit;
-            Vector3 origin = transform.position;
-            Vector3 dir = -transform.up;
-            if(Physics.Raycast(origin, dir, out hit, rayToMoveDir+0.05f, ignoreLayer))
-            {
-                CancelClimb();
-               
-            }
-            return;
-        }
+      // void LookForGround()
+   //  /{
+        //    RaycastHit hit;
+        //    Vector3 origin = transform.position;
+        //    Vector3 dir = -transform.up;
+        //    if(Physics.Raycast(origin, dir, out hit, rayToMoveDir, ignoreLayer))
+        //    {
+       //         CancelClimb();
+       //        
+       //     }
+       //     return;
+      //  }
 
         void CancelClimb()
         {
@@ -259,6 +261,7 @@ namespace climb
             tpc.EnableController();
 
             a_hook.enabled = false;
+            Debug.Log("cancelling");
         }
     }
     [System.Serializable]
