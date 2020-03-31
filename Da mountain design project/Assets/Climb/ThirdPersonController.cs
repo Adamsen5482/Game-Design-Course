@@ -16,7 +16,9 @@ namespace climb
 
         Transform camHolder;
 
-        Rigidbody rigid;
+        //Rigidbody rigid;
+        CharacterController characterController;
+        PlayerMovement playerMovement;
         Collider col;
         Animator anim;
 
@@ -34,7 +36,8 @@ namespace climb
         public bool isClimbing;
 
         public bool Aiming = false;
-        
+        private bool aimToggle = false;
+
         public Transform player;
         public Transform pivot;
         public Transform camTarget;
@@ -44,16 +47,20 @@ namespace climb
 
         void Start()
         {
+            /*
             rigid = GetComponent<Rigidbody>();
             rigid.angularDrag = 999;
             rigid.constraints = RigidbodyConstraints.FreezeRotation;
-
+            */
+            characterController = GetComponent<CharacterController>();
+            playerMovement = GetComponent<PlayerMovement>();
             col = GetComponent<Collider>();
 
-            camHolder = CameraHolder.instance.transform;
+            //camHolder = CameraHolder.instance.transform;
             anim = GetComponentInChildren<Animator>();
 
             fc = GetComponent < FreeClimb>();
+            anim.transform.GetChild(0).GetComponent<Animator>();
         }
 
         // Update is called once per frame
@@ -64,7 +71,10 @@ namespace climb
                 return;
             }
             OnGround = onGround();
-            movement();
+            //movement();
+            horizontal = Input.GetAxis("Horizontal");
+            vertical = Input.GetAxis("Vertical");
+            moveAmount = Mathf.Clamp01((Mathf.Abs(horizontal) + Mathf.Abs(vertical)));
 
 
         }
@@ -90,17 +100,18 @@ namespace climb
             Quaternion lookdirection = Quaternion.LookRotation(targetDir);
             Quaternion targetRot = Quaternion.Slerp(transform.rotation, lookdirection, Time.deltaTime * rotateSpeed);
             transform.rotation = targetRot;
-
+            /*
             Vector3 direction = transform.forward * (moveSpeed * moveAmount);
             direction.y = rigid.velocity.y;
             rigid.velocity = direction;
+            */
 
         }
 
         public void aim()
         {
-            return;
-            Aiming = true;
+            //return;
+            Aiming = !Aiming;
             if (!useOffsetValues)
             {
                 offset = player.position - transform.position;
@@ -114,9 +125,16 @@ namespace climb
 
         private void Update()
         {
-            if (Input.GetButtonUp("Jump")==true)
+            if (Input.GetButtonDown("Aim"))
             {
-                aim();
+                aimToggle = !aimToggle;
+
+                if (aimToggle)
+                {
+                    aim();    
+                    print("Works!");
+                }
+                
             }
 
             if (Aiming)
@@ -158,7 +176,7 @@ namespace climb
 
 
 
-            jump();
+            //jump();
 
             if (!OnGround && !KeepOfGround)
             {
@@ -196,11 +214,13 @@ namespace climb
 
                 if (jump)
                 {
+                    /*
                     Vector3 v = rigid.velocity;
                     v.y = jumpSpeed;
                     rigid.velocity = v;
                     savedTime = Time.realtimeSinceStartup;
                     KeepOfGround = true;
+                    */
                 }
             }
         }
@@ -228,14 +248,17 @@ namespace climb
 
         public void DisableController()
         {
+            /*
             rigid.isKinematic = true;
             col.enabled = false;
+            */
+            playerMovement.enabled = false;
         }
 
         public void EnableController()
         {
-           
-            rigid.isKinematic = false;
+            playerMovement.enabled = true;
+            //rigid.isKinematic = false;
             col.enabled = true;
             anim.CrossFade("Blend Tree", 0.2f);
             anim.SetBool("OnAir", true);
