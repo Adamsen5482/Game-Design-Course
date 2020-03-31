@@ -260,8 +260,10 @@ namespace climb
             playerMovement.enabled = true;
            //rigid.isKinematic = false;
             col.enabled = true;
+
             anim.CrossFade("blend", 0.2f);
            anim.SetBool("OnAir", true);
+
             climfOff = true;
             climbTimer = Time.realtimeSinceStartup;
            isClimbing = false;
