@@ -211,7 +211,7 @@ namespace climb
         {
             if (OnGround)
             {
-                bool jump = Input.GetButtonUp("Jump");
+                bool jump = Input.GetKeyUp(KeyCode.E);
 
                 if (jump)
                 {
