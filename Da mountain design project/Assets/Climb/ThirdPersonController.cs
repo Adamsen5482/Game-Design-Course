@@ -237,7 +237,7 @@ namespace climb
            
             rigid.isKinematic = false;
             col.enabled = true;
-            anim.CrossFade("blend", 0.2f);
+            anim.CrossFade("Blend Tree", 0.2f);
             anim.SetBool("OnAir", true);
             climfOff = true;
             climbTimer = Time.realtimeSinceStartup;

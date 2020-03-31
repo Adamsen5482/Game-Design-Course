@@ -60,13 +60,14 @@ namespace climb
                 getInPosition(delta);
                 return;
             }
+            bool cancel = Input.GetKeyUp(KeyCode.X);
+            if (cancel)
+            {
+                CancelClimb();
+            }
 
             if (!isLerping)
             {
-                bool cancel = Input.GetKeyUp(KeyCode.X);
-                if (cancel) { 
-                    CancelClimb();
-                }
 
                 horizontal = Input.GetAxis("Horizontal");
                  vertical = Input.GetAxis("Vertical");
@@ -258,6 +259,7 @@ namespace climb
             isClimbing = false;
             tpc.EnableController();
 
+            anim.CrossFade("idle", 2);
             a_hook.enabled = false;
         }
     }
