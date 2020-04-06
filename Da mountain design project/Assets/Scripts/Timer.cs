@@ -6,10 +6,11 @@ public class Timer : MonoBehaviour
 {
     public Text timer;
     public float currentTime;
-    bool notWon = true;
+    float startTime;
+    public bool notWon = true;
     void Start()
     {
-        
+        startTime = Time.time;
     }
 
     // Update is called once per frame
@@ -19,7 +20,7 @@ public class Timer : MonoBehaviour
         {
 
 
-            currentTime = Time.time;
+            currentTime = Time.time-startTime;
 
 
             string min = ((int)currentTime / 60).ToString();

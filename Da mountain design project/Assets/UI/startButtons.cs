@@ -33,4 +33,11 @@ public class startButtons : MonoBehaviour
         
         SceneManager.LoadScene("TestScene"); // which scene is correct?
     }
+
+
+    public void Restart()
+    {
+
+        SceneManager.LoadScene("StartScene"); // which scene is correct?
+    }
 }

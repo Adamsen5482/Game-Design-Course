@@ -58,7 +58,6 @@ namespace climb
 
             //camHolder = CameraHolder.instance.transform;
             anim = GetComponentInChildren<Animator>();
-
             fc = GetComponent <FreeClimb>();
             anim.transform.GetChild(0).GetComponent<Animator>();
         }
