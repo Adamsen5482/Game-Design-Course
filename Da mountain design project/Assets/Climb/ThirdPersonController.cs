@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
 namespace climb
 {
 
@@ -15,7 +16,7 @@ namespace climb
         Vector3 camYForward;
 
         Transform camHolder;
-
+        public Text helper;
         //Rigidbody rigid;
         CharacterController characterController;
         PlayerMovement playerMovement;
@@ -251,11 +252,12 @@ namespace climb
             
             playerMovement.enabled = false;
             Debug.Log("disable controller");
-           
+            helper.text = "Press X to walk";
         }
 
         public void EnableController()
         {
+            helper.text = "Press E to Climb \n Press Space to Jump";
             playerMovement.enabled = true;
            //rigid.isKinematic = false;
             col.enabled = true;
