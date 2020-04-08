@@ -22,6 +22,7 @@ public class ItemController : MonoBehaviour
         if (id == itemID)
         {
             print("Enter!");
+            AudioManager.audioManager.PlaySFX(AudioManager.audioManager.sfxObjects[0].audioClip);
             Destroy(itemGameObject);
         }
     }
