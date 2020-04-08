@@ -30,6 +30,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Transform[] spawnPoints = null;
 
+    #region Audio Properties
+    [SerializeField] private float transmissionTime;
+    private float t = 0.0f; // Keeps track of time
+    #endregion
+
     private void Awake()
     {
         gameManager = this;
@@ -40,4 +45,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        AudioManager.audioManager.PlayMusic(AudioManager.audioManager.musicObjects[0].audioClip);
+    }
+
+    private void Update()
+    {
+        /* Can be done when having multiple background music clips. 
+        if (Time.time >= AudioManager.audioManager.musicSource.clip.length && AudioManager.audioManager.firstMusicSourceIsPlaying)
+        {
+            AudioManager.audioManager.PlayMusicWithCrossFade(AudioManager.audioManager.musicObjects[0].audioClip);
+        }
+        */ 
+    }
 }
