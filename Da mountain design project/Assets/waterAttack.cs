@@ -5,7 +5,7 @@ using UnityEngine;
 public class waterAttack : MonoBehaviour
 {
     //public float speed = 1; 
-    Vector3 speed = new Vector3(0,0.5f,0);
+     public Vector3 speed = new Vector3(0,0.2f,0);
     public GameObject canvas;
     // Start is called before the first frame update
     void Start()
