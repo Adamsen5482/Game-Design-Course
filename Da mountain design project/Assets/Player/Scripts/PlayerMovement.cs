@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     // Movement Properties
     [Header("Player Movement Properties")]
     public float speed = 6.0f;
+    public float fallspeed = 100f;
     public float gravity = 20.0f;
     public float jumpSpeed = 8.0f;
     // Camera Properties
@@ -88,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
         if (currentSlope >= 45f && controller.isGrounded)
         {
             isSliding = true;
-            transform.position += slopeParallel.normalized / 2;
+            transform.position += (slopeParallel.normalized / 2) * fallspeed;
         }
 
         // If the player is standing on a slope that isn't too steep, is grounded, as is not sliding anymore we start a function to count time
