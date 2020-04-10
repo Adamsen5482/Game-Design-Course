@@ -35,9 +35,10 @@ public class AudioManager : MonoBehaviour
     #region Audio Clip Objects
     public SfxObject[] sfxObjects;
     public MusicObject[] musicObjects;
+    private List<MusicObject> availableMusicObjects = new List<MusicObject>();
     #endregion
 
-    [HideInInspector] public bool firstMusicSourceIsPlaying;
+    [HideInInspector] public bool activeMusicSource;
 
     private void Awake()
     {
@@ -48,64 +49,70 @@ public class AudioManager : MonoBehaviour
         sfxSource = gameObject.AddComponent<AudioSource>();
         sfxSource2 = gameObject.AddComponent<AudioSource>();
 
-    }
+        for (int i = 0; i < musicObjects.Length; i++)
+        {
+            AddMusicObject(musicObjects[i]); 
+        }
 
-    private void Start()
-    {
-        musicSource.clip = musicObjects[0].audioClip;
-        musicSource2.clip = musicObjects[1].audioClip;
+        activeMusicSource = true;
+
     }
 
     public void PlayMusic(AudioClip musicClip)
     {
         // Determine which sourcer is active
-        AudioSource activeSource = (firstMusicSourceIsPlaying) ? musicSource : musicSource2;
-
+        AudioSource activeSource = (activeMusicSource) ? musicSource : musicSource2;
         musicSource.clip = musicClip;
         activeSource.volume = 1;
         musicSource.Play();
-
     }
 
     public void PlayMusicObject(MusicObject musicObject)
     {
         // Determine which sourcer is active
-        //AudioSource activeSource = (firstMusicSourceIsPlaying) ? musicSource : musicSource2;
-
-        if (firstMusicSourceIsPlaying)
-        {
-            musicSource.clip = musicObject.audioClip;
-            musicSource.volume = musicObject.volume;
-            musicSource.pitch = musicObject.pitch;
-            musicSource.Play();
-        } else
-        {
-            musicSource2.clip = musicObject.audioClip;
-            musicSource2.volume = musicObject.volume;
-            musicSource2.pitch = musicObject.pitch;
-            musicSource2.Play();
-        }
-        
+        AudioSource activeSource = (activeMusicSource) ? musicSource : musicSource2;
+        musicObject = RandomMusicObject();
+        activeSource.clip = musicObject.audioClip;
+        activeSource.volume = musicObject.volume;
+        activeSource.pitch = musicObject.pitch;
+        activeSource.Play();
     }
 
     public void PlayMusicWithFade(AudioClip newClip, float transitionTime = 1.0f)
     {
         // Determine which source is active
-        AudioSource activeSource = (firstMusicSourceIsPlaying) ? musicSource : musicSource2;
+        AudioSource activeSource = (activeMusicSource) ? musicSource : musicSource2;
         StartCoroutine(UpdateMusicWithFade(activeSource, newClip, transitionTime));
     }
 
     public void PlayMusicWithCrossFade(AudioClip musicClip, float transitionTime = 1.0f)
     {
         // Determine which source is active
-        AudioSource activeSource = (firstMusicSourceIsPlaying) ? musicSource : musicSource2;
-        AudioSource newSource = (firstMusicSourceIsPlaying) ? musicSource2 : musicSource;
+        AudioSource activeSource = (activeMusicSource) ? musicSource : musicSource2;
+        AudioSource newSource = (activeMusicSource) ? musicSource2 : musicSource;
 
         // Swap the source 
-        firstMusicSourceIsPlaying = !firstMusicSourceIsPlaying;
+        activeMusicSource = !activeMusicSource;
 
         // Set the fields of the audio source, then start the coroutine to crossfade
         newSource.clip = musicClip;
+        newSource.Play();
+        StartCoroutine(UpdateMusicWithCrossFade(activeSource, newSource, transitionTime));
+    }
+
+    public void PlayMusicWithCrossFade(MusicObject musicObject, float transitionTime = 1.0f)
+    {
+        // Determine which source is active
+        AudioSource activeSource = (activeMusicSource) ? musicSource : musicSource2;
+        AudioSource newSource = (activeMusicSource) ? musicSource2 : musicSource;
+
+        // Swap the source 
+        activeMusicSource = !activeMusicSource;
+
+        // Set the fields of the audio source, then start the coroutine to crossfade
+        newSource.clip = musicObject.audioClip;
+        newSource.pitch = musicObject.pitch;
+        newSource.volume = musicObject.volume;
         newSource.Play();
         StartCoroutine(UpdateMusicWithCrossFade(activeSource, newSource, transitionTime));
     }
@@ -183,6 +190,25 @@ public class AudioManager : MonoBehaviour
     public void SetPitch(float pitch, AudioSource audioSource)
     {
         audioSource.pitch = pitch;
+    }
+
+    public MusicObject RandomMusicObject()
+    {
+        if (availableMusicObjects != null)
+        {
+            int random = Random.Range(0, availableMusicObjects.Count);
+            MusicObject musicObject = availableMusicObjects[random];
+            availableMusicObjects.RemoveAt(random);
+            return musicObject;
+        } else
+        {
+            return null;
+        }
+    }
+
+    public void AddMusicObject(MusicObject musicObject)
+    {
+        availableMusicObjects.Add(musicObject);
     }
 
     #region Private Coroutine Methods

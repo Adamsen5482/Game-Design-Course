@@ -555,7 +555,8 @@ MonoBehaviour:
   musicObjects:
   - {fileID: 11400000, guid: a15279bcd5cfdad4cbde42d9916ecd83, type: 2}
   - {fileID: 11400000, guid: 426b2fbc6195768449ee737f83ea87be, type: 2}
-  firstMusicSourceIsPlaying: 0
+  - {fileID: 11400000, guid: 0b82262e15fbf9741837ac3680b21938, type: 2}
+  activeMusicSource: 0
 --- !u!4 &233444791
 Transform:
   m_ObjectHideFlags: 0
