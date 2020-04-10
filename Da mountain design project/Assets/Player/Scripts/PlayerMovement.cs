@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     [HideInInspector]
     public bool canMove = true;
+    bool isSliding = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +58,49 @@ public class PlayerMovement : MonoBehaviour
             rotation.x = Mathf.Clamp(rotation.x, -lookXLimit, lookXLimit);
             playerCameraParent.localRotation = Quaternion.Euler(rotation.x, 0, 0);
             transform.eulerAngles = new Vector2(0, rotation.y);
+        }
+
+        SlopeDirection();
+    }
+
+
+    private void SlopeDirection()
+    {
+        // Raycast with infinite distance to check the slope directly under the player no matter where they are
+        RaycastHit hit;
+        Physics.Raycast(this.transform.position, Vector3.down, out hit, Mathf.Infinity);
+
+        // Saving the normal
+        Vector3 n = hit.normal;
+
+        // Crossing my normal with the player's up vector (if your player rotates I guess you can just use Vector3.up to create a vector parallel to the ground
+        Vector3 groundParallel = Vector3.Cross(transform.up, n);
+
+        // Crossing the vector we made before with the initial normal gives us a vector that is parallel to the slope and always pointing down
+        Vector3 slopeParallel = Vector3.Cross(groundParallel, n);
+        Debug.DrawRay(hit.point, slopeParallel * 10, Color.green);
+
+        // Just the current angle we're standing on
+        float currentSlope = Mathf.Round(Vector3.Angle(hit.normal, transform.up));
+        Debug.Log(currentSlope);
+        
+        // If the slope is on a slope too steep and the player is Grounded the player is pushed down the slope.
+        if (currentSlope >= 45f && controller.isGrounded)
+        {
+            isSliding = true;
+            transform.position += slopeParallel.normalized / 2;
+        }
+
+        // If the player is standing on a slope that isn't too steep, is grounded, as is not sliding anymore we start a function to count time
+        else if (currentSlope < 45 && controller.isGrounded && isSliding)
+        {
+            //TimePassed();
+
+            // If enough time has passed the sliding stops. There's no need for these last two if statements, the thing works already, but it's nicer to have the player slide for a little bit more once they get back on the ground
+           // if (currentSlope < 45 && MaintainingGround() && isSliding && timePassed > 1f)
+           // {
+           //     isSliding = false;
+           // }
         }
     }
 }
