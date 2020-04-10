@@ -1453,7 +1453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - {fileID: 3043016796420350970, guid: 56f63896c6c73d848918c73c45f9e490, type: 3}
-  transmissionTime: 0
+  transmissionTime: 10
 --- !u!4 &1407359337
 Transform:
   m_ObjectHideFlags: 0

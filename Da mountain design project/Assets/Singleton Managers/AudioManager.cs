@@ -48,13 +48,12 @@ public class AudioManager : MonoBehaviour
         sfxSource = gameObject.AddComponent<AudioSource>();
         sfxSource2 = gameObject.AddComponent<AudioSource>();
 
-        
-        for (int i = 0; i < sfxObjects.Length; i++)
-        {
-            SetPitch(sfxObjects[i].pitch, sfxSource);
-            SetSFXVolume(sfxObjects[i].volume);
-        }
+    }
 
+    private void Start()
+    {
+        musicSource.clip = musicObjects[0].audioClip;
+        musicSource2.clip = musicObjects[1].audioClip;
     }
 
     public void PlayMusic(AudioClip musicClip)
@@ -66,6 +65,27 @@ public class AudioManager : MonoBehaviour
         activeSource.volume = 1;
         musicSource.Play();
 
+    }
+
+    public void PlayMusicObject(MusicObject musicObject)
+    {
+        // Determine which sourcer is active
+        //AudioSource activeSource = (firstMusicSourceIsPlaying) ? musicSource : musicSource2;
+
+        if (firstMusicSourceIsPlaying)
+        {
+            musicSource.clip = musicObject.audioClip;
+            musicSource.volume = musicObject.volume;
+            musicSource.pitch = musicObject.pitch;
+            musicSource.Play();
+        } else
+        {
+            musicSource2.clip = musicObject.audioClip;
+            musicSource2.volume = musicObject.volume;
+            musicSource2.pitch = musicObject.pitch;
+            musicSource2.Play();
+        }
+        
     }
 
     public void PlayMusicWithFade(AudioClip newClip, float transitionTime = 1.0f)
@@ -110,6 +130,13 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);
+    }
+
+    public void PlaySFXObject(SfxObject sfxObject, float volume = 1.0f)
+    {
+        sfxSource.pitch = sfxObject.pitch;
+        sfxSource.volume = sfxObject.volume;
+        sfxSource.PlayOneShot(sfxObject.audioClip, volume);
     }
 
     public void PlaySFX(AudioClip clip, float volume)

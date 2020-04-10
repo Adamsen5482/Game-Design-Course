@@ -56,7 +56,6 @@ public class MusicObjectEditor : Editor
             audioController.Stop(audioSource);
         }
 
-
         serializedObject.ApplyModifiedProperties();
     }
 }

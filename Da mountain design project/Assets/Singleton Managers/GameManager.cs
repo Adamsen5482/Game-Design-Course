@@ -47,16 +47,25 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.audioManager.PlayMusic(AudioManager.audioManager.musicObjects[0].audioClip);
+        print(AudioManager.audioManager.musicObjects[0].volume);
+        AudioManager.audioManager.PlayMusicObject(AudioManager.audioManager.musicObjects[0]);
     }
 
     private void Update()
     {
-        /* Can be done when having multiple background music clips. 
-        if (Time.time >= AudioManager.audioManager.musicSource.clip.length && AudioManager.audioManager.firstMusicSourceIsPlaying)
+        
+        // Can be done when having multiple background music clips. 
+        if (Time.time - t >= AudioManager.audioManager.musicSource.clip.length && AudioManager.audioManager.firstMusicSourceIsPlaying)
+        {
+            AudioManager.audioManager.PlayMusicWithCrossFade(AudioManager.audioManager.musicObjects[1].audioClip);
+            t = Time.time;
+        }
+        else if (Time.time - t >= AudioManager.audioManager.musicSource2.clip.length - transmissionTime)
         {
             AudioManager.audioManager.PlayMusicWithCrossFade(AudioManager.audioManager.musicObjects[0].audioClip);
+            t = Time.time;
         }
-        */ 
+        
+        
     }
 }
