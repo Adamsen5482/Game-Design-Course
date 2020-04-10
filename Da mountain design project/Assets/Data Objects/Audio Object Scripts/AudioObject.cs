@@ -6,7 +6,7 @@ public abstract class AudioObject : ScriptableObject
 {
     public AudioClip audioClip;
     // Audio Source Properties
-    public float pitch;
+    public float pitch = 1.0f;
     public float volume = 1.0f;
 
     public virtual void OnEnable()

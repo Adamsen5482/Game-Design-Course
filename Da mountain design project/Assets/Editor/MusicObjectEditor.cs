@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+[CustomEditor(typeof(MusicObject))]
+[CanEditMultipleObjects]
 public class MusicObjectEditor : Editor
 {
     private AudioSource audioSource;
@@ -43,6 +45,17 @@ public class MusicObjectEditor : Editor
         {
             audioController.Play(audioSource);
         }
+
+        if (GUILayout.Button("Pause"))
+        {
+            audioController.Pause(audioSource);
+        }
+
+        if (GUILayout.Button("Stop"))
+        {
+            audioController.Stop(audioSource);
+        }
+
 
         serializedObject.ApplyModifiedProperties();
     }
