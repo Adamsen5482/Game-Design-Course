@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 public class startButtons : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    public GameObject leaderboardCanvas;
+    public GameObject winCanvas;
+    public GameObject loseCanvas;
     void Start()
     {
         
@@ -31,13 +35,20 @@ public class startButtons : MonoBehaviour
     public void Play()
     {
         
-        SceneManager.LoadScene("TestScene"); // which scene is correct?
+        SceneManager.LoadScene("MortenTest"); // which scene is correct?
     }
 
 
     public void Restart()
     {
 
-        SceneManager.LoadScene("StartScene"); // which scene is correct?
+        SceneManager.LoadScene("MortenTest"); // which scene is correct?
+    }
+
+    public void Leaderboard()
+    {
+        leaderboardCanvas.SetActive(true);
+        winCanvas.SetActive(false);
+        loseCanvas.SetActive(false);
     }
 }
