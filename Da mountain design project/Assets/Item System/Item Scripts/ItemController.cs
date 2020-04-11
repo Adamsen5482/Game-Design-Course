@@ -22,7 +22,7 @@ public class ItemController : MonoBehaviour
         if (id == itemID)
         {
             print("Enter!");
-            AudioManager.audioManager.PlaySFXObject(AudioManager.audioManager.sfxObjects[0]);
+            //AudioManager.audioManager.PlaySFXObject(AudioManager.audioManager.sfxObjects[0]);
             Destroy(itemGameObject);
         }
     }

@@ -33,7 +33,8 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     #region Audio Clip Objects
-    public SfxObject[] sfxObjects;
+    public SfxObject[] characterObjects;
+    public SfxObject[] environmentObjects;
     public MusicObject[] musicObjects;
     private List<MusicObject> availableMusicObjects = new List<MusicObject>();
     #endregion

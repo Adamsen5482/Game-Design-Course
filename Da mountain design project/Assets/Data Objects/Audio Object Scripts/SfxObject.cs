@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SFX", menuName = "Audio/SFX")]
 public class SfxObject : AudioObject
 {
+    public float volumeScale = 1.0f;
+
     public override void Play(AudioSource audioSource)
     {
         audioSource.clip = audioClip != null ? audioClip : null;

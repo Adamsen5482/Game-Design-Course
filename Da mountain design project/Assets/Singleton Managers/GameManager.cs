@@ -29,9 +29,8 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [SerializeField] private Transform[] spawnPoints = null;
-
     #region Audio Properties
-    [SerializeField] private float transmissionTime;
+    private float transmissionTime;
     private float t = 0.0f; // Keeps track of time
     private MusicObject musicObject1, musicObject2;
     #endregion
@@ -50,6 +49,7 @@ public class GameManager : MonoBehaviour
     {
         musicObject1 = AudioManager.audioManager.RandomMusicObject();
         AudioManager.audioManager.PlayMusicObject(musicObject1);
+        transmissionTime = musicObject1.transitionTime;
     }
 
     private void Update()
@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
         {
             musicObject2 = AudioManager.audioManager.RandomMusicObject();
             AudioManager.audioManager.PlayMusicWithCrossFade(musicObject2, transmissionTime);
+            transmissionTime = musicObject2.transitionTime;
             AudioManager.audioManager.AddMusicObject(musicObject1);
             t = Time.time;
             AudioManager.audioManager.activeMusicSource = false;
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
             {
                 musicObject1 = AudioManager.audioManager.RandomMusicObject();
                 AudioManager.audioManager.PlayMusicWithCrossFade(musicObject1, transmissionTime);
+                transmissionTime = musicObject1.transitionTime;
                 AudioManager.audioManager.AddMusicObject(musicObject2);
                 t = Time.time;
                 AudioManager.audioManager.activeMusicSource = true;

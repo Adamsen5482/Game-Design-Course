@@ -13,6 +13,7 @@ public class MusicObjectEditor : Editor
     SerializedProperty audioClip;
     SerializedProperty pitch;
     SerializedProperty volume;
+    SerializedProperty transitionTime;
     // Foldouts
     bool showAudioSourceProperties = false;
 
@@ -23,6 +24,7 @@ public class MusicObjectEditor : Editor
         // Serialized Properties
         pitch = serializedObject.FindProperty("pitch");
         volume = serializedObject.FindProperty("volume");
+        transitionTime = serializedObject.FindProperty("transitionTime");
     }
 
     public override void OnInspectorGUI()
@@ -39,6 +41,9 @@ public class MusicObjectEditor : Editor
             audioSource.pitch = audioController.pitch;
             EditorGUILayout.Slider(volume, 0.0f, 1.0f, new GUIContent("Volume"));
             audioSource.volume = audioController.volume;
+            EditorGUILayout.Slider(transitionTime, 0, 10, new GUIContent("Transition Time", "The transition time between audio clips"));
+            
+            
         }
 
         if (GUILayout.Button("Play"))

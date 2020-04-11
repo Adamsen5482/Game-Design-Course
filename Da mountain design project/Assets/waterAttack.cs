@@ -29,6 +29,7 @@ public class waterAttack : MonoBehaviour
             print("meh" + other);
             canvas.SetActive(true);
             other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            AudioManager.audioManager.PlaySFXObject(AudioManager.audioManager.characterObjects[0]);
         }
     }
 }
