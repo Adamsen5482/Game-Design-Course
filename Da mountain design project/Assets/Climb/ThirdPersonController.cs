@@ -59,7 +59,7 @@ namespace climb
 
             //camHolder = CameraHolder.instance.transform;
             anim = GetComponentInChildren<Animator>();
-            fc = GetComponent <FreeClimb>();
+            fc = GetComponent<FreeClimb>();
             anim.transform.GetChild(0).GetComponent<Animator>();
         }
 
@@ -108,62 +108,11 @@ namespace climb
 
         }
 
-        public void aim()
-        {
-            //return;
-            Aiming = !Aiming;
-            if (!useOffsetValues)
-            {
-                offset = player.position - transform.position;
-            }
 
-            pivot.transform.position = player.transform.position;
-            pivot.transform.parent = player.transform;
-
-            Cursor.lockState = CursorLockMode.Locked;
-        }
 
         private void Update()
         {
-            if (Input.GetButtonDown("Aim"))
-            {
-                aimToggle = !aimToggle;
-
-                if (aimToggle)
-                {
-                    aim();    
-                    print("Works!");
-                }
-                
-            }
-
-            if (Aiming)
-            {
-
-
-                float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
-                player.Rotate(0, horizontal, 0);
-
-                float vertical = Input.GetAxis("Mouse Y") * rotateSpeed;
-                pivot.Rotate(-vertical, 0, 0);
-
-
-
-                float desiredYAngle = player.eulerAngles.y;
-                float desiredXAngle = pivot.eulerAngles.x;
-                Quaternion rotation = Quaternion.Euler(desiredXAngle, desiredYAngle, 0);
-                transform.position = player.position - (rotation * offset);
-
-                transform.LookAt(camTarget);
-                return;
-            }
-
-
-            if (isClimbing)
-            {
-                fc.Tick(Time.deltaTime);
-                return;
-            }
+            climb();
             OnGround = onGround();
 
             if (KeepOfGround)
@@ -174,52 +123,58 @@ namespace climb
                 }
             }
 
-
-
-            jump();
-
-            if (!OnGround && !KeepOfGround)
+            if (Input.GetKeyUp(KeyCode.E))
             {
-                if (!climfOff)
+
+                fc.climbing = !fc.climbing;
+                if (playerMovement.enabled == true)
                 {
-                    
-                    Debug.Log(isClimbing);
-
-
-                    isClimbing = fc.checkForClimb();
-                    if (isClimbing)
-                    {
-                        DisableController();
-                    }
+                    DisableController();
+                    anim.SetBool("climbing", true);
                 }
+                else
+                {
+                    EnableController();
+                    anim.SetBool("climbing", false);
+                }
+
             }
 
-            if (climfOff)
-            {
-                if (Time.realtimeSinceStartup - climbTimer > 1)
-                {
-                    climfOff = false;
-                }
-            }
+
             anim.SetFloat("move", moveAmount);
 
             anim.SetBool("OnAir", !OnGround);
 
         }
 
-        void jump()
-        {
-            if (OnGround)
-            {
-                bool jump = Input.GetKeyUp(KeyCode.E);
 
-                if (jump)
+        void climb()
+        {
+            if (!fc.climbing)
+                return;
+
+            if (fc.NearWall())
+            {
+                //                Debug.Log("near wall true");
+                if (fc.FacingWall())
                 {
-                    savedTime = Time.realtimeSinceStartup;
-                    KeepOfGround = true;
-                    
+                    fc.ClimbWall(transform);
                 }
+                else
+                {
+                    fc.climbing = false;
+                    EnableController();
+                    anim.SetBool("climbing", false);
+                }
+
             }
+            else
+            {
+                fc.climbing = false;
+                EnableController();
+                anim.SetBool("climbing", false);
+            }
+
         }
 
         bool onGround()
@@ -239,7 +194,7 @@ namespace climb
 
                 return true;
             }
-                
+
             return true;
         }
 
@@ -247,28 +202,28 @@ namespace climb
         {
             /*
             rigid.isKinematic = true;
-            */
-            col.enabled = false;
             
+            col.enabled = false;
+            */
             playerMovement.enabled = false;
             Debug.Log("disable controller");
-            helper.text = "Press X to walk";
+            helper.text = "Press E to walk";
         }
 
         public void EnableController()
         {
             helper.text = "Press E to Climb \n Press Space to Jump";
             playerMovement.enabled = true;
-           //rigid.isKinematic = false;
+            //rigid.isKinematic = false;
             col.enabled = true;
 
             anim.CrossFade("blend", 0.2f);
-           anim.SetBool("OnAir", true);
+            anim.SetBool("OnAir", true);
 
             climfOff = true;
             climbTimer = Time.realtimeSinceStartup;
-           isClimbing = false;
-               
+            isClimbing = false;
+
         }
     }
 
