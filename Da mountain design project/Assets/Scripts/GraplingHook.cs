@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GraplingHook : MonoBehaviour
 {
     public Transform player;
-    public GameObject GraplingHookVisual;
+    public UnityEngine.GameObject GraplingHookVisual;
     public Image Crosshair;
     public int timeToReachTarget;
     private IEnumerator coroutine;

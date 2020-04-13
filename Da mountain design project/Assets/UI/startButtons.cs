@@ -6,9 +6,9 @@ public class startButtons : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public GameObject leaderboardCanvas;
-    public GameObject winCanvas;
-    public GameObject loseCanvas;
+    public UnityEngine.GameObject leaderboardCanvas;
+    public UnityEngine.GameObject winCanvas;
+    public UnityEngine.GameObject loseCanvas;
     void Start()
     {
         
