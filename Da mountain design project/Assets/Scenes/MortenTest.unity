@@ -550,7 +550,8 @@ MonoBehaviour:
   musicSource2: {fileID: 0}
   sfxSource: {fileID: 0}
   sfxSource2: {fileID: 0}
-  characterObjects: []
+  characterObjects:
+  - {fileID: 11400000, guid: e7ae530acddd6e14dbd19aa64ac08c99, type: 2}
   environmentObjects:
   - {fileID: 11400000, guid: 7c3c5c74e1be96849969da07dc04b73a, type: 2}
   musicObjects:
