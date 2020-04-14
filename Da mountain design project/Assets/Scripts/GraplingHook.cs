@@ -9,7 +9,6 @@ public class GraplingHook : MonoBehaviour
     public UnityEngine.GameObject GraplingHookVisual;
     public Image Crosshair;
     public int timeToReachTarget;
-    private IEnumerator coroutine;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +19,9 @@ public class GraplingHook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray ray = new Ray (transform.position, transform.forward);
+        Crosshair.transform.position = Input.mousePosition;
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
 
         if (Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable"){
@@ -33,18 +34,16 @@ public class GraplingHook : MonoBehaviour
             Crosshair.GetComponent<Image>().color = new Color32(255,0,0,100);
         }
 
-        if (Input.GetMouseButton(0) && Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable" ){
-
+        if (Input.GetMouseButton(0) && Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable"){
+            Debug.Log("click");
             GraplingHookVisual.SetActive(true);
-
-            Vector3 startMarker = player.transform.position;
-            coroutine = lerpPosition(startMarker, hitInfo.transform.position, timeToReachTarget);
-            StartCoroutine(coroutine);
-    }
+            StartCoroutine(lerpPosition(player.transform.position, hitInfo.transform.position, timeToReachTarget));
+        }
     }
 
      IEnumerator lerpPosition( Vector3 StartPos, Vector3 EndPos, float LerpTime)
     {
+        player.GetComponent<CharacterController>().enabled = false;
         float StartTime = Time.time;
         float EndTime = StartTime + LerpTime;
  
@@ -56,6 +55,7 @@ public class GraplingHook : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         GraplingHookVisual.SetActive(false);
+        player.GetComponent<CharacterController>().enabled = true;
  
     }
     
