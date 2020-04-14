@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         print(items[0]);
     }
 
-    public bool CanHook()
+    public bool CanHook()   
     {
         bool hook = false, rope = false;
         foreach (GameObject item in items)
