@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScene.unity
     guid: 934a722dde4d35a46950ab7d23e37fe5
+  - enabled: 1
+    path: Assets/Scenes/MortenTest.unity
+    guid: 61842dc82c4b55c46af4d799769ec6d2
   m_configObjects: {}

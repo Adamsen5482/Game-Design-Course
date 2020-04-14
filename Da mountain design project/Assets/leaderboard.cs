@@ -22,13 +22,13 @@ public class leaderboard : MonoBehaviour
                 playerhaspos = true;
                 timetext.text = fixtime(timer.currentTime);
                 timetext.fontStyle = FontStyle.Bold;
-                namepos.text = (i+1).ToString() + "   " + "Lost Child";
+                namepos.text = "YOU";
                 namepos.fontStyle = FontStyle.Bold;
             }
             else
             {
                 timetext.text = fixtime(times[i]);
-                namepos.text = (i+1).ToString()+"   " + names[i];
+                namepos.text = names[i];
             }
         }
     }
@@ -42,8 +42,8 @@ public class leaderboard : MonoBehaviour
     {
     string min = ((int)time / 60).ToString();
     string sec = (time % 60).ToString("f0");
-    string ost =  min + " minutes and " + sec + " seconds";
-        return ost;
+    string leaderboardTime =  min + ":" + sec;
+        return leaderboardTime;
     }
 
 }
