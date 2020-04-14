@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -826,9 +826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149263331959924ebf446981a5282fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderboardCanvas: {fileID: 0}
-  winCanvas: {fileID: 0}
-  loseCanvas: {fileID: 0}
 --- !u!114 &362243081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -971,9 +968,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149263331959924ebf446981a5282fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderboardCanvas: {fileID: 0}
-  winCanvas: {fileID: 0}
-  loseCanvas: {fileID: 0}
 --- !u!114 &364159385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1553,9 +1547,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149263331959924ebf446981a5282fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderboardCanvas: {fileID: 0}
-  winCanvas: {fileID: 0}
-  loseCanvas: {fileID: 0}
 --- !u!114 &456298804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2270,7 +2261,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: be96a5605c9713f44a38fac9bc3f7f87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 89.89
+      value: 89.46
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: be96a5605c9713f44a38fac9bc3f7f87,
         type: 3}
@@ -2614,7 +2605,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: be96a5605c9713f44a38fac9bc3f7f87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 89.89
+      value: 89.46
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: be96a5605c9713f44a38fac9bc3f7f87,
         type: 3}
@@ -2814,9 +2805,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149263331959924ebf446981a5282fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderboardCanvas: {fileID: 0}
-  winCanvas: {fileID: 0}
-  loseCanvas: {fileID: 0}
 --- !u!114 &1243857327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3647,7 +3635,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: be96a5605c9713f44a38fac9bc3f7f87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 89.89
+      value: 89.46
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: be96a5605c9713f44a38fac9bc3f7f87,
         type: 3}
@@ -4202,7 +4190,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: be96a5605c9713f44a38fac9bc3f7f87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 89.89
+      value: 89.46
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: be96a5605c9713f44a38fac9bc3f7f87,
         type: 3}
