@@ -16,7 +16,7 @@ namespace climb
         Vector3 camYForward;
 
         Transform camHolder;
-        public Text helper;
+        
         //Rigidbody rigid;
         CharacterController characterController;
         PlayerMovement playerMovement;
@@ -206,13 +206,16 @@ namespace climb
             col.enabled = false;
             */
             playerMovement.enabled = false;
-            Debug.Log("disable controller");
-            helper.text = "Press E to walk";
+            //Debug.Log("disable controller");
+            helper.instance.RemoveMessage("Press E to climb");
+            StartCoroutine(helper.instance.GetMessage("Press E to walk"));
+            
         }
 
         public void EnableController()
         {
-            helper.text = "Press E to Climb \n Press Space to Jump";
+            helper.instance.RemoveMessage("Press E to walk");
+            StartCoroutine(helper.instance.GetMessage("Press E to climb"));
             playerMovement.enabled = true;
             //rigid.isKinematic = false;
             col.enabled = true;

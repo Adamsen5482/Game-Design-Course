@@ -76,7 +76,7 @@ public class helper : MonoBehaviour
     IEnumerator MessageTimer(Text target, string message)
     {
         target.text = message;
-        target.GetComponent<Animation>().Play();
+       // target.GetComponent<Animation>().Play();
        yield return new WaitForSeconds(20);
         target.text = "";
     }
