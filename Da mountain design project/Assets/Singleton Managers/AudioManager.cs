@@ -33,13 +33,22 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     #region Audio Clip Objects
+    public enum CharacterNum {GrassWalk = 0, GrassRun = 1, GravelWalk = 2, GravelRun = 3, WaterWalk = 4, WaterRun = 5, BodySplash = 6};
+    public enum EnvironmentNum {WaterWaves = 0, WindBlows = 1};
+    public enum StateNum {Winning = 0};
+    [Header("Sound Effects")]
     public SfxObject[] characterObjects;
     public SfxObject[] environmentObjects;
-    public MusicObject[] musicObjects;
+    public SfxObject[] stateObjects;
+    [Header("Background Music")] public MusicObject[] musicObjects;
     private List<MusicObject> availableMusicObjects = new List<MusicObject>();
+    [HideInInspector] public CharacterNum characterNum;
+    [HideInInspector] public EnvironmentNum environmentNum;
+    [HideInInspector] public StateNum stateNum;
     #endregion
 
     [HideInInspector] public bool activeMusicSource;
+
 
     private void Awake()
     {

@@ -13,4 +13,9 @@ public class SfxObject : AudioObject
         audioSource?.Play();
     }
 
+    public void Stop(AudioSource audioSource)
+    {
+        audioSource.clip = audioClip != null ? audioClip : null;
+        audioSource?.Stop();
+    }
 }

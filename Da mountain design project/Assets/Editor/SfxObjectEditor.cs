@@ -49,6 +49,11 @@ public class SfxObjectEditor : Editor
             audioController.Play(audioSource);
         }
 
+        if (GUILayout.Button("Stop"))
+        {
+            audioController.Stop(audioSource);
+        }
+
         serializedObject.ApplyModifiedProperties();
     }
 }

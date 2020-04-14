@@ -20,9 +20,7 @@ public class GraplingHook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Crosshair.transform.position = Input.mousePosition;
-
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
+        Ray ray = new Ray (transform.position, transform.forward);
         RaycastHit hitInfo;
 
         if (Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable"){
@@ -35,8 +33,7 @@ public class GraplingHook : MonoBehaviour
             Crosshair.GetComponent<Image>().color = new Color32(255,0,0,100);
         }
 
-        if (Input.GetMouseButton(0) && Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable"){
-            Debug.Log("click");
+        if (Input.GetMouseButton(0) && Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable" ){
 
             GraplingHookVisual.SetActive(true);
 
@@ -48,7 +45,6 @@ public class GraplingHook : MonoBehaviour
 
      IEnumerator lerpPosition( Vector3 StartPos, Vector3 EndPos, float LerpTime)
     {
-        player.GetComponent<CharacterController>().enabled = false;
         float StartTime = Time.time;
         float EndTime = StartTime + LerpTime;
  
@@ -60,7 +56,6 @@ public class GraplingHook : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         GraplingHookVisual.SetActive(false);
-        player.GetComponent<CharacterController>().enabled = true;
  
     }
     
