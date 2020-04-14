@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1c27ba1745328045979bc1fd73cdd58, type: 3}
-  m_Name: FootStepsGrassRun
+  m_Name: Leaderboard Click
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 39b81dbf5489a8544ab4dbdc023e947b, type: 3}
+  audioClip: {fileID: 8300000, guid: 75d4fcbe2be5f014ba54680b01584322, type: 3}
   pitch: 1
   volume: 1
-  volumeScale: 0.021
+  volumeScale: 0.016

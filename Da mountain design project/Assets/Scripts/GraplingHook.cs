@@ -33,7 +33,7 @@ public class GraplingHook : MonoBehaviour
             Crosshair.GetComponent<Image>().color = new Color32(255,0,0,100);
         }
 
-        if (Input.GetMouseButton(0) && Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable"){
+        if (Input.GetMouseButton(0) && Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable" ){
 
             GraplingHookVisual.SetActive(true);
 
