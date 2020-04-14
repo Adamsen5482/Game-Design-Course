@@ -721,7 +721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &853423580
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1197,7 +1197,6 @@ GameObject:
   - component: {fileID: 1337956640}
   - component: {fileID: 1337956639}
   - component: {fileID: 1337956638}
-  - component: {fileID: 1337956637}
   m_Layer: 5
   m_Name: CreditButton
   m_TagString: Untagged
@@ -1225,21 +1224,6 @@ RectTransform:
   m_AnchoredPosition: {x: 181, y: 316.99997}
   m_SizeDelta: {x: 179.1, y: 31.6}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1337956637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1337956635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c149263331959924ebf446981a5282fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leaderboardCanvas: {fileID: 0}
-  winCanvas: {fileID: 0}
-  loseCanvas: {fileID: 0}
 --- !u!114 &1337956638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1283,16 +1267,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1337956637}
-        m_MethodName: QuitGame
-        m_Mode: 1
+      - m_Target: {fileID: 853423579}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1337956639
 MonoBehaviour:
