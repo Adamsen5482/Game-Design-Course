@@ -29,10 +29,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [SerializeField] private Transform[] spawnPoints = null;
-
     #region Audio Properties
-    [SerializeField] private float transmissionTime;
+    private float transmissionTime;
     private float t = 0.0f; // Keeps track of time
+    private MusicObject musicObject1, musicObject2;
     #endregion
 
     private void Awake()
@@ -47,23 +47,36 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        print(AudioManager.audioManager.musicObjects[0].volume);
-        AudioManager.audioManager.PlayMusicObject(AudioManager.audioManager.musicObjects[0]);
+        musicObject1 = AudioManager.audioManager.RandomMusicObject();
+        AudioManager.audioManager.PlayMusicObject(musicObject1);
+        transmissionTime = musicObject1.transitionTime;
     }
 
     private void Update()
     {
         
         // Can be done when having multiple background music clips. 
-        if (Time.time - t >= AudioManager.audioManager.musicSource.clip.length && AudioManager.audioManager.firstMusicSourceIsPlaying)
+        if (Time.time - t >= AudioManager.audioManager.musicSource.clip.length && AudioManager.audioManager.activeMusicSource)
         {
-            AudioManager.audioManager.PlayMusicWithCrossFade(AudioManager.audioManager.musicObjects[1].audioClip);
+            musicObject2 = AudioManager.audioManager.RandomMusicObject();
+            AudioManager.audioManager.PlayMusicWithCrossFade(musicObject2, transmissionTime);
+            transmissionTime = musicObject2.transitionTime;
+            AudioManager.audioManager.AddMusicObject(musicObject1);
             t = Time.time;
+            AudioManager.audioManager.activeMusicSource = false;
         }
-        else if (Time.time - t >= AudioManager.audioManager.musicSource2.clip.length - transmissionTime)
+        else if (AudioManager.audioManager.musicSource2.clip != null)
         {
-            AudioManager.audioManager.PlayMusicWithCrossFade(AudioManager.audioManager.musicObjects[0].audioClip);
-            t = Time.time;
+            if (Time.time - t >= AudioManager.audioManager.musicSource2.clip.length - transmissionTime)
+            {
+                musicObject1 = AudioManager.audioManager.RandomMusicObject();
+                AudioManager.audioManager.PlayMusicWithCrossFade(musicObject1, transmissionTime);
+                transmissionTime = musicObject1.transitionTime;
+                AudioManager.audioManager.AddMusicObject(musicObject2);
+                t = Time.time;
+                AudioManager.audioManager.activeMusicSource = true;
+            }
+            
         }
         
         

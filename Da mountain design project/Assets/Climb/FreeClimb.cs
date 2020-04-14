@@ -40,7 +40,7 @@ namespace climb
 
         public void Init()
         {
-            helper = new GameObject().transform;
+            helper = new UnityEngine.GameObject().transform;
             helper.name = "climb helper";
             a_hook.init(this, helper);
             ignoreLayer = ~(1 << 8);

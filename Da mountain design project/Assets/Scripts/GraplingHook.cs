@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GraplingHook : MonoBehaviour
 {
     public Transform player;
-    public GameObject GraplingHookVisual;
+    public UnityEngine.GameObject GraplingHookVisual;
     public Image Crosshair;
     public int timeToReachTarget;
     private IEnumerator coroutine;
@@ -20,7 +20,9 @@ public class GraplingHook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray ray = new Ray (transform.position, transform.forward);
+        Crosshair.transform.position = Input.mousePosition;
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
         RaycastHit hitInfo;
 
         if (Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable"){
@@ -34,6 +36,7 @@ public class GraplingHook : MonoBehaviour
         }
 
         if (Input.GetMouseButton(0) && Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable"){
+            Debug.Log("click");
 
             GraplingHookVisual.SetActive(true);
 
@@ -45,6 +48,7 @@ public class GraplingHook : MonoBehaviour
 
      IEnumerator lerpPosition( Vector3 StartPos, Vector3 EndPos, float LerpTime)
     {
+        player.GetComponent<CharacterController>().enabled = false;
         float StartTime = Time.time;
         float EndTime = StartTime + LerpTime;
  
@@ -56,6 +60,7 @@ public class GraplingHook : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         GraplingHookVisual.SetActive(false);
+        player.GetComponent<CharacterController>().enabled = true;
  
     }
     

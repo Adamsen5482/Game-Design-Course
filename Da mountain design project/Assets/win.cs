@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class win : MonoBehaviour
 {
-    public GameObject winCanvas;
+    public UnityEngine.GameObject winCanvas;
     public Timer timer;
     public Text winTime;
     // Start is called before the first frame update

@@ -13,6 +13,7 @@ public class SfxObjectEditor : Editor
     SerializedProperty audioClip;
     SerializedProperty pitch;
     SerializedProperty volume;
+    SerializedProperty volumeScale;
     // Foldouts
     bool showAudioSourceProperties = false;
 
@@ -23,6 +24,7 @@ public class SfxObjectEditor : Editor
         // Serialized Properties
         pitch = serializedObject.FindProperty("pitch");
         volume = serializedObject.FindProperty("volume");
+        volumeScale = serializedObject.FindProperty("volumeScale");
     }
 
     public override void OnInspectorGUI()
@@ -38,7 +40,8 @@ public class SfxObjectEditor : Editor
             EditorGUILayout.Slider(pitch, 0, 10, new GUIContent("Pitch"));
             audioSource.pitch = audioController.pitch;
             EditorGUILayout.Slider(volume, 0.0f, 1.0f, new GUIContent("Volume"));
-            audioSource.volume = audioController.volume;
+            EditorGUILayout.Slider(volumeScale, 0.0f, 1.0f, new GUIContent("Volume Scale", "Scaling the volume percentage wise"));
+            audioSource.volume = audioController.volume * audioController.volumeScale;
         }
 
         if (GUILayout.Button("Play"))

@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Just the current angle we're standing on
         float currentSlope = Mathf.Round(Vector3.Angle(hit.normal, transform.up));
-        Debug.Log(currentSlope);
+        //Debug.Log(currentSlope);
         
         // If the slope is on a slope too steep and the player is Grounded the player is pushed down the slope.
         if (currentSlope >= 45f && controller.isGrounded)

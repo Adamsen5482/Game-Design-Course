@@ -26,7 +26,7 @@ namespace climb
 
         void CreateLine(int i)
         {
-                GameObject go = new GameObject();
+            UnityEngine.GameObject go = new UnityEngine.GameObject();
                 lines.Add(go.AddComponent<LineRenderer>());
                 lines[i].widthMultiplier = 0.05f;
         }
