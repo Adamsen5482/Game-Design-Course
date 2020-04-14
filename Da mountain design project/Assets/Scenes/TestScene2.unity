@@ -559,6 +559,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149263331959924ebf446981a5282fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leaderboardCanvas: {fileID: 0}
+  winCanvas: {fileID: 0}
+  loseCanvas: {fileID: 0}
 --- !u!114 &264370860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1245,6 +1248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5af21403d77d2af41a5bf9fc85376036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: {x: 0, y: 0.2, z: 0}
   canvas: {fileID: 1662955722}
 --- !u!1 &585630357
 GameObject:
@@ -1661,6 +1665,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149263331959924ebf446981a5282fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leaderboardCanvas: {fileID: 0}
+  winCanvas: {fileID: 0}
+  loseCanvas: {fileID: 0}
 --- !u!114 &662255184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2037,6 +2044,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149263331959924ebf446981a5282fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leaderboardCanvas: {fileID: 0}
+  winCanvas: {fileID: 0}
+  loseCanvas: {fileID: 0}
 --- !u!114 &1040127423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2264,6 +2274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149263331959924ebf446981a5282fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leaderboardCanvas: {fileID: 0}
+  winCanvas: {fileID: 0}
+  loseCanvas: {fileID: 0}
 --- !u!114 &1129479735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2792,6 +2805,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149263331959924ebf446981a5282fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leaderboardCanvas: {fileID: 0}
+  winCanvas: {fileID: 0}
+  loseCanvas: {fileID: 0}
 --- !u!114 &1563401755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3083,6 +3099,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149263331959924ebf446981a5282fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leaderboardCanvas: {fileID: 0}
+  winCanvas: {fileID: 0}
+  loseCanvas: {fileID: 0}
 --- !u!114 &1634637878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3462,6 +3481,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149263331959924ebf446981a5282fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leaderboardCanvas: {fileID: 0}
+  winCanvas: {fileID: 0}
+  loseCanvas: {fileID: 0}
 --- !u!114 &1748091324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3712,6 +3734,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149263331959924ebf446981a5282fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leaderboardCanvas: {fileID: 0}
+  winCanvas: {fileID: 0}
+  loseCanvas: {fileID: 0}
 --- !u!114 &1900534585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4199,6 +4224,11 @@ PrefabInstance:
       propertyPath: m_SkinWidth
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 8038770606722057362, guid: 554f9866d2ccbb54aab3ae639d65f847,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8038770606722057363, guid: 554f9866d2ccbb54aab3ae639d65f847,
         type: 3}
       propertyPath: m_Name
@@ -4333,6 +4363,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149263331959924ebf446981a5282fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leaderboardCanvas: {fileID: 0}
+  winCanvas: {fileID: 0}
+  loseCanvas: {fileID: 0}
 --- !u!114 &2086156062
 MonoBehaviour:
   m_ObjectHideFlags: 0
