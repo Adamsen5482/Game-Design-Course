@@ -1,103 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8038770606652327494
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8038770606652327489}
-  - component: {fileID: 8038770606652327491}
-  - component: {fileID: 8038770606652327488}
-  - component: {fileID: 8038770606652327490}
-  m_Layer: 8
-  m_Name: Main_Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8038770606652327489
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8038770606652327494}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.381, z: -3.626}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8038770608361601599}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &8038770606652327491
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8038770606652327494}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!81 &8038770606652327488
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8038770606652327494}
-  m_Enabled: 1
---- !u!114 &8038770606652327490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8038770606652327494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 500984d8b7a33a34c93604fe07282df7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  referenceTransform: {fileID: 8038770608361601599}
-  collisionOffset: 0.2
 --- !u!1 &8038770606722057363
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +31,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 2.374}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8038770608361601599}
   - {fileID: 298012916802100916}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -147,11 +48,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 8038770606722057362}
+  anim: {fileID: 0}
   speed: 6
   fallspeed: 0.5
   gravity: 20
   jumpSpeed: 8
-  playerCameraParent: {fileID: 8038770608361601599}
+  playerCameraParent: {fileID: 0}
   lookSpeed: 2
   lookXLimit: 60
   canMove: 1
@@ -185,7 +87,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904a79cf31648b548bee4add0f9994ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  helper: {fileID: 0}
   fc: {fileID: 0}
   moveSpeed: 4
   rotateSpeed: 9
@@ -193,8 +94,8 @@ MonoBehaviour:
   isClimbing: 0
   Aiming: 0
   player: {fileID: 8038770606722057375}
-  pivot: {fileID: 8038770608361601599}
-  camTarget: {fileID: 8038770608361601599}
+  pivot: {fileID: 0}
+  camTarget: {fileID: 0}
   useOffsetValues: 0
   offset: {x: 0, y: 0, z: 0}
 --- !u!114 &8038770606722057374
@@ -209,54 +110,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1e213aed3345744bf6bf3caf3789d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
-  isClimbing: 0
-  isMid: 0
-  possOffset: 0.5
-  rayToMoveDir: 0.5
-  wallOffset: 0.45
-  speed: 0.2
-  climbSpeed: 3
-  rotateSpeed: 5
-  rayForwardsToWall: 1
-  baseIKsnapshot:
-    rh: {x: 0, y: 0, z: 0}
-    lh: {x: 0, y: 0, z: 0}
-    lf: {x: -0.43, y: -1.2, z: 0}
-    rf: {x: 0.2, y: -1.2, z: 0}
-  a_hook: {fileID: 0}
-  tpc: {fileID: 8038770606722057372}
---- !u!1 &8038770608361601596
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8038770608361601599}
-  m_Layer: 8
-  m_Name: CameraParent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8038770608361601599
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8038770608361601596}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.64, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 8038770606652327489}
-  m_Father: {fileID: 8038770606722057375}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  ClimbSpeed: 3
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 0
+  controller: {fileID: 0}
+  climbing: 0
 --- !u!1001 &4708643040010319278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -302,7 +161,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 9d8d74282307da041a8eb80220d316f2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9d8d74282307da041a8eb80220d316f2,
         type: 3}

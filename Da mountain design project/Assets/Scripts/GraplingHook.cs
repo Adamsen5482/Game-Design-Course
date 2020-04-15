@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GraplingHook : MonoBehaviour
 {
     public Transform player;
+    public Canvas sigtekorn;
     public UnityEngine.GameObject GraplingHookVisual;
     public Image Crosshair;
     public int timeToReachTarget;
@@ -35,7 +36,8 @@ public class GraplingHook : MonoBehaviour
         }
 
         if (Input.GetButtonDown("Aim") && Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable" && GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().CanHook()){
-            Debug.Log("click");
+            StartCoroutine(helper.instance.GetMessage("Aim with the mouse"));
+            sigtekorn.gameObject.SetActive(true);
             GraplingHookVisual.SetActive(true);
             StartCoroutine(lerpPosition(player.transform.position, hitInfo.transform.position, timeToReachTarget));
         }
