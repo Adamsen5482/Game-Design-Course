@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -812,15 +812,29 @@ MonoBehaviour:
   sfxSource: {fileID: 0}
   sfxSource2: {fileID: 0}
   characterObjects:
+  - {fileID: 11400000, guid: 681e93410f8474345b7a1c3bb6452b71, type: 2}
+  - {fileID: 11400000, guid: 2eed9dfbff7d332439a37b0b938d44a4, type: 2}
+  - {fileID: 11400000, guid: 112bd599c190e694290fd7d850f717e1, type: 2}
+  - {fileID: 11400000, guid: 05ca374674711354da2f58196a83b13c, type: 2}
+  - {fileID: 11400000, guid: cde8234978cbd2e4abcf23e0393b154f, type: 2}
+  - {fileID: 11400000, guid: 84502b808ea86ee49a885bc74b1eeba1, type: 2}
   - {fileID: 11400000, guid: e7ae530acddd6e14dbd19aa64ac08c99, type: 2}
   environmentObjects:
   - {fileID: 11400000, guid: 7c3c5c74e1be96849969da07dc04b73a, type: 2}
-  stateObjects: []
+  - {fileID: 11400000, guid: e629c4c1deca9b549ba8ae112243d666, type: 2}
+  stateObjects:
+  - {fileID: 11400000, guid: c104def60e465c1408a09ac727b0188c, type: 2}
+  - {fileID: 11400000, guid: f6c9c1a35173afe42b604dcb81456cba, type: 2}
+  - {fileID: 11400000, guid: 56ccdda334e892a4fbce1c39f9394b28, type: 2}
+  - {fileID: 11400000, guid: 478c28af44e8aa84c9c52f3a5c91d90c, type: 2}
+  - {fileID: 11400000, guid: dab6812dcc015944396a562a8ae959bf, type: 2}
   musicObjects:
   - {fileID: 11400000, guid: a15279bcd5cfdad4cbde42d9916ecd83, type: 2}
   - {fileID: 11400000, guid: 426b2fbc6195768449ee737f83ea87be, type: 2}
   - {fileID: 11400000, guid: 0b82262e15fbf9741837ac3680b21938, type: 2}
-  uiMusicObjects: []
+  uiMusicObjects:
+  - {fileID: 11400000, guid: f9546004d80c60145be476edf28ecc1b, type: 2}
+  - {fileID: 11400000, guid: 8f427b67c9c5bc141bc072a14d1b8be9, type: 2}
   characterNum: 0
   environmentNum: 0
   stateNum: 0
@@ -2761,6 +2775,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - {fileID: 2195549176017931190}
+  t: 0
+  inGame: 0
 --- !u!4 &750833613
 Transform:
   m_ObjectHideFlags: 0
@@ -4873,6 +4889,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 233444790}
+        m_MethodName: PlaySFXObject
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: f6c9c1a35173afe42b604dcb81456cba,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: SfxObject, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

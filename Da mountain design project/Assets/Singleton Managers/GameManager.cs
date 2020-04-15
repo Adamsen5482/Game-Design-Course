@@ -30,9 +30,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Transform[] spawnPoints = null;
     #region Audio Properties
-    private float transmissionTime;
-    private float t = 0.0f; // Keeps track of time
+    private float transitionTime;
+    [HideInInspector] public float t = 0.0f; // Keeps track of time
     private MusicObject musicObject1, musicObject2;
+    //private MusicObject uiMusicObject1, uiMusicObject2;
+    [HideInInspector] public bool inGame = false;
     #endregion
 
     private void Awake()
@@ -47,38 +49,70 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        musicObject1 = AudioManager.audioManager.RandomMusicObject();
+        musicObject1 = AudioManager.audioManager.RandomUIMusicObject();
         AudioManager.audioManager.PlayMusicObject(musicObject1);
-        transmissionTime = musicObject1.transitionTime;
+        transitionTime = musicObject1.transitionTime;
+        
     }
-
+    
     private void Update()
     {
         
         // Can be done when having multiple background music clips. 
-        if (Time.time - t >= AudioManager.audioManager.musicSource.clip.length && AudioManager.audioManager.activeMusicSource)
+        if (Time.time - t >= AudioManager.audioManager.musicSource.clip.length)
         {
-            musicObject2 = AudioManager.audioManager.RandomMusicObject();
-            AudioManager.audioManager.PlayMusicWithCrossFade(musicObject2, transmissionTime);
-            transmissionTime = musicObject2.transitionTime;
-            AudioManager.audioManager.AddMusicObject(musicObject1);
+            /*
+            musicObject2 = inGame ? AudioManager.audioManager.RandomMusicObject() : AudioManager.audioManager.RandomUIMusicObject();
+            AudioManager.audioManager.PlayMusicWithCrossFade(musicObject2, transitionTime);
+            transitionTime = musicObject2.transitionTime;
+            AudioManager.audioManager.AddMusicObject(musicObject1, inGame);
             t = Time.time;
             AudioManager.audioManager.activeMusicSource = false;
+            */
+
+            //SwitchMusic(inGame);
         }
         else if (AudioManager.audioManager.musicSource2.clip != null)
         {
-            if (Time.time - t >= AudioManager.audioManager.musicSource2.clip.length - transmissionTime)
+            
+            if (Time.time - t >= AudioManager.audioManager.musicSource2.clip.length - transitionTime)
             {
-                musicObject1 = AudioManager.audioManager.RandomMusicObject();
-                AudioManager.audioManager.PlayMusicWithCrossFade(musicObject1, transmissionTime);
-                transmissionTime = musicObject1.transitionTime;
-                AudioManager.audioManager.AddMusicObject(musicObject2);
+                /*
+                musicObject1 = inGame ? AudioManager.audioManager.RandomMusicObject() : AudioManager.audioManager.RandomUIMusicObject();
+                AudioManager.audioManager.PlayMusicWithCrossFade(musicObject1, transitionTime);
+                transitionTime = musicObject1.transitionTime;
+                AudioManager.audioManager.AddMusicObject(musicObject2, inGame);
                 t = Time.time;
                 AudioManager.audioManager.activeMusicSource = true;
+                */
+                //SwitchMusic(inGame);
+                
             }
+
+            
             
         }
-        
-        
+
     }
+    
+    public void SwitchMusic(bool inGame)
+    {
+        if (AudioManager.audioManager.activeMusicSource)
+        {
+            musicObject2 = inGame ? AudioManager.audioManager.RandomMusicObject() : AudioManager.audioManager.RandomUIMusicObject();
+            AudioManager.audioManager.PlayMusicWithCrossFade(musicObject2, transitionTime);
+            transitionTime = musicObject2.transitionTime;
+            AudioManager.audioManager.activeMusicSource = false;
+        }
+        else
+        {
+            musicObject1 = inGame ? AudioManager.audioManager.RandomMusicObject() : AudioManager.audioManager.RandomUIMusicObject();
+            AudioManager.audioManager.PlayMusicWithCrossFade(musicObject1, transitionTime);
+            transitionTime = musicObject1.transitionTime;
+            AudioManager.audioManager.activeMusicSource = true;
+        }
+
+        t = Time.time;
+    }
+
 }

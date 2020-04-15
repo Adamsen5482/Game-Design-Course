@@ -89,7 +89,6 @@ public class AudioManager : MonoBehaviour
     {
         // Determine which sourcer is active
         AudioSource activeSource = (activeMusicSource) ? musicSource : musicSource2;
-        musicObject = RandomMusicObject();
         activeSource.clip = musicObject.audioClip;
         activeSource.volume = musicObject.volume;
         activeSource.pitch = musicObject.pitch;
@@ -165,6 +164,14 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(sfxObject.audioClip, sfxObject.volumeScale);
     }
 
+    public void PlaySFXObject(SfxObject sfxObject)
+    {
+        sfxSource.pitch = sfxObject.pitch;
+        sfxSource.volume = sfxObject.volume;
+        sfxObject.volumeScale *= sfxObject.volume;
+        sfxSource.PlayOneShot(sfxObject.audioClip, sfxObject.volumeScale);
+    }
+
     public void PlaySFX(AudioClip clip, float volume)
     {
         sfxSource.PlayOneShot(clip, volume);
@@ -225,9 +232,36 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public MusicObject RandomUIMusicObject()
+    {
+        if (availableMusicObjects != null)
+        {
+            int random = Random.Range(0, availableUIMusicObjects.Count);
+            MusicObject musicObject = availableUIMusicObjects[random];
+            availableUIMusicObjects.RemoveAt(random);
+            return musicObject;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public void AddMusicObject(MusicObject musicObject)
     {
         availableMusicObjects.Add(musicObject);
+    }
+
+    public void AddMusicObject(MusicObject musicObject, bool inGame)
+    {
+        if (inGame)
+        {
+            availableMusicObjects.Add(musicObject);
+        }
+        else
+        {
+            availableUIMusicObjects.Add(musicObject);
+        }
     }
 
     public void AddUIMusicObject(MusicObject musicObject)

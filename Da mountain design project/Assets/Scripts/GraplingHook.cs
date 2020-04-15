@@ -34,7 +34,7 @@ public class GraplingHook : MonoBehaviour
             Crosshair.GetComponent<Image>().color = new Color32(239, 152 , 154 , 100);
         }
 
-        if (Input.GetMouseButton(0) && Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable"){
+        if (Input.GetButtonDown("Aim") && Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable" && GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().CanHook()){
             Debug.Log("click");
             GraplingHookVisual.SetActive(true);
             StartCoroutine(lerpPosition(player.transform.position, hitInfo.transform.position, timeToReachTarget));

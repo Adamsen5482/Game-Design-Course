@@ -15,4 +15,4 @@ MonoBehaviour:
   audioClip: {fileID: 8300000, guid: 4d9d9ebe45afb8e4d8eda175faa23422, type: 3}
   pitch: 1
   volume: 0
-  transitionTime: 1
+  transitionTime: 10

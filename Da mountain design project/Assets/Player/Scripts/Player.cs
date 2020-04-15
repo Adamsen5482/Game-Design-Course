@@ -25,13 +25,21 @@ public class Player : MonoBehaviour
     public bool CanHook()   
     {
         bool hook = false, rope = false;
+        /*
         foreach (GameObject item in items)
         {
             hook = item.GetComponent<Item>().itemType == Item.ItemType.Hook ? true : false;
             rope = item.GetComponent<Item>().itemType == Item.ItemType.Rope ? true : false;
         }
+        */
+        //return (hook && rope) ? true : false; 
 
-        return (hook && rope) ? true : false; 
+        foreach (GameObject item in items)
+        {
+            rope = item.GetComponent<Item>().itemType == Item.ItemType.Rope ? true : false;
+        }
+
+        return rope ? true : false;        
     }
     
 }
