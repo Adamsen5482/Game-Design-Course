@@ -6,7 +6,7 @@ public class ItemController : MonoBehaviour
 {
     [HideInInspector] public int itemID;
     public GameObject item;
-    //Player player;
+    Player player;
     private GameObject itemGameObject;
 
     // Start is called before the first frame update
@@ -14,7 +14,7 @@ public class ItemController : MonoBehaviour
     {
         GameEvents.gameEvents.onItemPickUpEnter += onItemPickUp;
         SpawnItem(item);
-        itemGameObject = gameObject.transform.GetChild(0).gameObject;
+        itemGameObject = transform.GetChild(0).gameObject;
     }
 
     private void onItemPickUp(int id)
@@ -23,7 +23,10 @@ public class ItemController : MonoBehaviour
         {
             print("Enter!");
             //AudioManager.audioManager.PlaySFXObject(AudioManager.audioManager.sfxObjects[0]);
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            player.AddItem(itemGameObject);
             Destroy(itemGameObject);
+            
         }
     }
 
@@ -35,8 +38,8 @@ public class ItemController : MonoBehaviour
 
     private void InitializeItem(GameObject item)
     {
-        Item itemObject = item.GetComponent<Item>();
-        itemObject.itemID = itemID;
+        item.GetComponent<GameObject>();
+        item.GetComponent<Item>().itemID = itemID;
     }
 
     private void OnDestroy()

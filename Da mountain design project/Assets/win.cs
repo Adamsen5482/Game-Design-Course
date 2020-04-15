@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class win : MonoBehaviour
 {
-    public GameObject winCanvas;
+    public UnityEngine.GameObject winCanvas;
     public Timer timer;
     public Text winTime;
     // Start is called before the first frame update
@@ -25,7 +26,10 @@ public class win : MonoBehaviour
             string min = ((int)timer.currentTime / 60).ToString();
             string sec = (timer.currentTime % 60).ToString("f0");
             winTime.text = "YOUR TIME: \n" + min + " minutes and " + sec + " seconds";
-            winCanvas.SetActive(true);
+            //winCanvas.SetActive(true);
+            //new line
+            SceneManager.LoadScene("WinCinematic");
+
             other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         }
     }

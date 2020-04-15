@@ -45,7 +45,7 @@ public class Timer : MonoBehaviour
         else {
             string min = ((int)currentTime / 60).ToString();
             string sec = (currentTime % 60).ToString("f0");
-            timer.text = "You won in "+ min+ " minutes and "+sec+ " seconds";
+            timer.text = min+ ":" +sec;
         }
     }
 }

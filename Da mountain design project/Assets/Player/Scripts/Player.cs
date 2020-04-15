@@ -4,17 +4,34 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    List<Item> Items = new List<Item>();
+    private List<GameObject> items = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
+    public void AddItem(GameObject item)
     {
-        
+        items.Add(item);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RemoveItem(GameObject item)
     {
-        
+        items.Remove(item);
     }
+
+    // Only for testiing
+    public void PrintItem()
+    {
+        print(items[0]);
+    }
+
+    public bool CanHook()   
+    {
+        bool hook = false, rope = false;
+        foreach (GameObject item in items)
+        {
+            hook = item.GetComponent<Item>().itemType == Item.ItemType.Hook ? true : false;
+            rope = item.GetComponent<Item>().itemType == Item.ItemType.Rope ? true : false;
+        }
+
+        return (hook && rope) ? true : false; 
+    }
+    
 }

@@ -6,7 +6,7 @@ public class waterAttack : MonoBehaviour
 {
     //public float speed = 1; 
      public Vector3 speed = new Vector3(0,0.2f,0);
-    public GameObject canvas;
+    public UnityEngine.GameObject canvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,14 +22,17 @@ public class waterAttack : MonoBehaviour
         else if(transform.position.y < 72 && transform.position.y > 7){
         transform.position += speed * Time.deltaTime * 2;
         }
+
     }
 
     private void OnTriggerEnter(Collider other) {
         if(other.transform.tag == "Player"){
+
             print("meh" + other);
             canvas.SetActive(true);
             other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-            AudioManager.audioManager.PlaySFXObject(AudioManager.audioManager.characterObjects[0]);
+            //AudioManager.audioManager.PlaySFXObject((int)AudioManager.audioManager.characterObjects[AudioManager.CharacterNum.BodySplash]);
+
         }
     }
 }

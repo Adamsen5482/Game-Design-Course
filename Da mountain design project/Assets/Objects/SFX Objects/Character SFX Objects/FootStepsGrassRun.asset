@@ -15,4 +15,4 @@ MonoBehaviour:
   audioClip: {fileID: 8300000, guid: 39b81dbf5489a8544ab4dbdc023e947b, type: 3}
   pitch: 1
   volume: 1
-  volumeScale: 1
+  volumeScale: 0.021
