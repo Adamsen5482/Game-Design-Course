@@ -35,13 +35,16 @@ public class AudioManager : MonoBehaviour
     #region Audio Clip Objects
     public enum CharacterNum {GrassWalk = 0, GrassRun = 1, GravelWalk = 2, GravelRun = 3, WaterWalk = 4, WaterRun = 5, BodySplash = 6};
     public enum EnvironmentNum {WaterWaves = 0, WindBlows = 1};
-    public enum StateNum {Winning = 0, LeaderboardClick = 1};
+    public enum StateNum {Winning = 0, LeaderboardClick = 1, Click = 2, Confirm = 3, Cancel = 4};
     [Header("Sound Effects")]
     public SfxObject[] characterObjects;
     public SfxObject[] environmentObjects;
     public SfxObject[] stateObjects;
-    [Header("Background Music")] public MusicObject[] musicObjects;
+    [Header("Background Music")]
+    public MusicObject[] musicObjects;
+    public MusicObject[] uiMusicObjects;
     private List<MusicObject> availableMusicObjects = new List<MusicObject>();
+    private List<MusicObject> availableUIMusicObjects = new List<MusicObject>();
     [HideInInspector] public CharacterNum characterNum;
     [HideInInspector] public EnvironmentNum environmentNum;
     [HideInInspector] public StateNum stateNum;
@@ -64,6 +67,11 @@ public class AudioManager : MonoBehaviour
             AddMusicObject(musicObjects[i]); 
         }
 
+        for (int i = 0; i < uiMusicObjects.Length; i++)
+        {
+            AddUIMusicObject(uiMusicObjects[i]);
+        }
+
         activeMusicSource = true;
 
     }
@@ -81,7 +89,6 @@ public class AudioManager : MonoBehaviour
     {
         // Determine which sourcer is active
         AudioSource activeSource = (activeMusicSource) ? musicSource : musicSource2;
-        musicObject = RandomMusicObject();
         activeSource.clip = musicObject.audioClip;
         activeSource.volume = musicObject.volume;
         activeSource.pitch = musicObject.pitch;
@@ -157,6 +164,14 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(sfxObject.audioClip, sfxObject.volumeScale);
     }
 
+    public void PlaySFXObject(SfxObject sfxObject)
+    {
+        sfxSource.pitch = sfxObject.pitch;
+        sfxSource.volume = sfxObject.volume;
+        sfxObject.volumeScale *= sfxObject.volume;
+        sfxSource.PlayOneShot(sfxObject.audioClip, sfxObject.volumeScale);
+    }
+
     public void PlaySFX(AudioClip clip, float volume)
     {
         sfxSource.PlayOneShot(clip, volume);
@@ -217,9 +232,41 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public MusicObject RandomUIMusicObject()
+    {
+        if (availableMusicObjects != null)
+        {
+            int random = Random.Range(0, availableUIMusicObjects.Count);
+            MusicObject musicObject = availableUIMusicObjects[random];
+            availableUIMusicObjects.RemoveAt(random);
+            return musicObject;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public void AddMusicObject(MusicObject musicObject)
     {
         availableMusicObjects.Add(musicObject);
+    }
+
+    public void AddMusicObject(MusicObject musicObject, bool inGame)
+    {
+        if (inGame)
+        {
+            availableMusicObjects.Add(musicObject);
+        }
+        else
+        {
+            availableUIMusicObjects.Add(musicObject);
+        }
+    }
+
+    public void AddUIMusicObject(MusicObject musicObject)
+    {
+        availableUIMusicObjects.Add(musicObject);
     }
 
     #region Private Coroutine Methods

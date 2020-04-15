@@ -139,6 +139,7 @@ namespace climb
                 }
 
             }
+            anim.SetFloat("Moving", moveAmount);
 
 
             anim.SetFloat("move", moveAmount);

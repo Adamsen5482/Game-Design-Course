@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
+    public Animator anim;
     // Movement Properties
     [Header("Player Movement Properties")]
     public float speed = 6.0f;
@@ -47,11 +48,13 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetButtonDown("Jump") && canMove)
             {
                 moveDirection.y = jumpSpeed;
+                anim.SetTrigger("Jump");
             }
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
         controller.Move(moveDirection * Time.deltaTime);
+
         if (canMove)
         {
             rotation.y += Input.GetAxis("Mouse X") * lookSpeed;

@@ -236,6 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemID: 0
+  itemType: 1
 --- !u!65 &-8067857015391277927
 BoxCollider:
   m_ObjectHideFlags: 0

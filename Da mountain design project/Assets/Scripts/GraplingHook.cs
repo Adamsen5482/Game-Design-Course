@@ -13,7 +13,7 @@ public class GraplingHook : MonoBehaviour
     void Start()
     {
 
-    Crosshair.GetComponent<Image>().color = new Color32(255,0,0,100);
+    Crosshair.GetComponent<Image>().color = new Color32(239, 152 , 154 , 100);
     }
 
     // Update is called once per frame
@@ -27,14 +27,14 @@ public class GraplingHook : MonoBehaviour
         if (Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable"){
 
             Debug.DrawLine (ray.origin, hitInfo.point, Color.red);
-            Crosshair.GetComponent<Image>().color = new Color32(0,255,0,100);
+            Crosshair.GetComponent<Image>().color = new Color32(114, 234, 147, 100);
 
         } else{
             Debug.DrawLine (ray.origin, ray.origin+ray.direction*100 , Color.green);
-            Crosshair.GetComponent<Image>().color = new Color32(255,0,0,100);
+            Crosshair.GetComponent<Image>().color = new Color32(239, 152 , 154 , 100);
         }
 
-        if (Input.GetMouseButton(0) && Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable"){
+        if (Input.GetButtonDown("Aim") && Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable" && GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().CanHook()){
             Debug.Log("click");
             GraplingHookVisual.SetActive(true);
             StartCoroutine(lerpPosition(player.transform.position, hitInfo.transform.position, timeToReachTarget));
