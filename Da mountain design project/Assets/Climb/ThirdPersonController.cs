@@ -201,7 +201,7 @@ namespace climb
                     climfOff = false;
                 }
             }
-            anim.SetFloat("move", moveAmount);
+            anim.SetFloat("Moving", moveAmount);
 
             anim.SetBool("OnAir", !OnGround);
 
