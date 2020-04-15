@@ -27,6 +27,7 @@ public class waterAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.transform.tag == "Player"){
+
             print("meh" + other);
             canvas.SetActive(true);
             other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
