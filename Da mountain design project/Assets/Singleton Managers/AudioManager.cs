@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
     #region Audio Clip Objects
     public enum CharacterNum {GrassWalk = 0, GrassRun = 1, GravelWalk = 2, GravelRun = 3, WaterWalk = 4, WaterRun = 5, BodySplash = 6};
     public enum EnvironmentNum {WaterWaves = 0, WindBlows = 1};
-    public enum StateNum {Winning = 0};
+    public enum StateNum {Winning = 0, LeaderboardClick = 1};
     [Header("Sound Effects")]
     public SfxObject[] characterObjects;
     public SfxObject[] environmentObjects;
@@ -153,7 +153,8 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.pitch = sfxObject.pitch;
         sfxSource.volume = sfxObject.volume;
-        sfxSource.PlayOneShot(sfxObject.audioClip, volume);
+        sfxObject.volumeScale *= sfxObject.volume * volume;
+        sfxSource.PlayOneShot(sfxObject.audioClip, sfxObject.volumeScale);
     }
 
     public void PlaySFX(AudioClip clip, float volume)

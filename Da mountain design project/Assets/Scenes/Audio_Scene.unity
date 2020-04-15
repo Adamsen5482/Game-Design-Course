@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -228,6 +228,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9142566782301884108, guid: f696e767b2db87c4ba11cd6847a450a7,
+        type: 3}
+      propertyPath: itemType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9142566782301884109, guid: f696e767b2db87c4ba11cd6847a450a7,
         type: 3}
@@ -571,6 +576,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e629c4c1deca9b549ba8ae112243d666, type: 2}
   stateObjects:
   - {fileID: 11400000, guid: c104def60e465c1408a09ac727b0188c, type: 2}
+  - {fileID: 11400000, guid: f6c9c1a35173afe42b604dcb81456cba, type: 2}
+  - {fileID: 11400000, guid: 56ccdda334e892a4fbce1c39f9394b28, type: 2}
+  - {fileID: 11400000, guid: 478c28af44e8aa84c9c52f3a5c91d90c, type: 2}
+  - {fileID: 11400000, guid: dab6812dcc015944396a562a8ae959bf, type: 2}
   musicObjects:
   - {fileID: 11400000, guid: a15279bcd5cfdad4cbde42d9916ecd83, type: 2}
   - {fileID: 11400000, guid: 426b2fbc6195768449ee737f83ea87be, type: 2}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4664288e52f7faf4e805753e100d16b6, type: 3}
   m_Name: Cinematic Trailer
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: e471cc92438603848a743d054d7c5aba, type: 3}
   pitch: 1
-  volume: 1
+  volume: 0.032
   transitionTime: 1
