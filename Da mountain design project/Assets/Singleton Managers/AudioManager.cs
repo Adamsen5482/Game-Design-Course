@@ -35,13 +35,16 @@ public class AudioManager : MonoBehaviour
     #region Audio Clip Objects
     public enum CharacterNum {GrassWalk = 0, GrassRun = 1, GravelWalk = 2, GravelRun = 3, WaterWalk = 4, WaterRun = 5, BodySplash = 6};
     public enum EnvironmentNum {WaterWaves = 0, WindBlows = 1};
-    public enum StateNum {Winning = 0, LeaderboardClick = 1};
+    public enum StateNum {Winning = 0, LeaderboardClick = 1, Click = 2, Confirm = 3, Cancel = 4};
     [Header("Sound Effects")]
     public SfxObject[] characterObjects;
     public SfxObject[] environmentObjects;
     public SfxObject[] stateObjects;
-    [Header("Background Music")] public MusicObject[] musicObjects;
+    [Header("Background Music")]
+    public MusicObject[] musicObjects;
+    public MusicObject[] uiMusicObjects;
     private List<MusicObject> availableMusicObjects = new List<MusicObject>();
+    private List<MusicObject> availableUIMusicObjects = new List<MusicObject>();
     [HideInInspector] public CharacterNum characterNum;
     [HideInInspector] public EnvironmentNum environmentNum;
     [HideInInspector] public StateNum stateNum;
@@ -62,6 +65,11 @@ public class AudioManager : MonoBehaviour
         for (int i = 0; i < musicObjects.Length; i++)
         {
             AddMusicObject(musicObjects[i]); 
+        }
+
+        for (int i = 0; i < uiMusicObjects.Length; i++)
+        {
+            AddUIMusicObject(uiMusicObjects[i]);
         }
 
         activeMusicSource = true;
@@ -220,6 +228,11 @@ public class AudioManager : MonoBehaviour
     public void AddMusicObject(MusicObject musicObject)
     {
         availableMusicObjects.Add(musicObject);
+    }
+
+    public void AddUIMusicObject(MusicObject musicObject)
+    {
+        availableUIMusicObjects.Add(musicObject);
     }
 
     #region Private Coroutine Methods
