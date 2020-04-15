@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -390,6 +390,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - {fileID: 249382169}
+  t: 0
+  inGame: 0
 --- !u!1 &1702200834
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,6 +586,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a15279bcd5cfdad4cbde42d9916ecd83, type: 2}
   - {fileID: 11400000, guid: 426b2fbc6195768449ee737f83ea87be, type: 2}
   - {fileID: 11400000, guid: 0b82262e15fbf9741837ac3680b21938, type: 2}
+  uiMusicObjects:
+  - {fileID: 11400000, guid: f9546004d80c60145be476edf28ecc1b, type: 2}
+  - {fileID: 11400000, guid: 8f427b67c9c5bc141bc072a14d1b8be9, type: 2}
   characterNum: 0
   environmentNum: 0
   stateNum: 0
