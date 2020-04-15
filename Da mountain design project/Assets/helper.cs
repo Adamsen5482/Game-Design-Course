@@ -67,7 +67,7 @@ public class helper : MonoBehaviour
             {
                 StopCoroutine(Coroutines[i]);
                 containers[i].text = "";
-                Debug.Log("removed" + message);
+
                 break;
             }
         }

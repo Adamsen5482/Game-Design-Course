@@ -156,7 +156,7 @@ namespace climb
             if (fc.NearWall())
             {
                 //                Debug.Log("near wall true");
-                if (fc.FacingWall())
+                if (fc.FacingWall() && fc.DetectSlope())
                 {
                     fc.ClimbWall(transform);
                 }
