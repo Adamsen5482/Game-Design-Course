@@ -22,7 +22,7 @@ public class ShapeObject : MonoBehaviour
 
         float dist = Vector3.Distance(HookPivot.transform.position, Hookable.transform.position); 
 
-        transform.localScale = new Vector3(0.1f, 0.1f, dist);
+        transform.localScale = new Vector3(0.05f, 0.05f, dist);
 
     }
 }
