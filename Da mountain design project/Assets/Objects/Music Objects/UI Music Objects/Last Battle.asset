@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4664288e52f7faf4e805753e100d16b6, type: 3}
   m_Name: Last Battle
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 5e243436804b3fd459e57b40c7a668d0, type: 3}
   pitch: 1
-  volume: 1
+  volume: 0.068
   transitionTime: 1
