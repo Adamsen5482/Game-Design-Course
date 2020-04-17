@@ -9,6 +9,7 @@ public class GraplingHook : MonoBehaviour
     public UnityEngine.GameObject GraplingHookVisual;
     public Image Crosshair;
     public int timeToReachTarget;
+    public bool canHook = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,8 +34,8 @@ public class GraplingHook : MonoBehaviour
             Debug.DrawLine (ray.origin, ray.origin+ray.direction*100 , Color.green);
             Crosshair.GetComponent<Image>().color = new Color32(239, 152 , 154 , 100);
         }
-
-        if (Input.GetButtonDown("Aim") && Physics.Raycast (ray, out hitInfo) && hitInfo.transform.tag == "Hookable" && GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().CanHook()){
+        if (Physics.Raycast(ray, out hitInfo) && hitInfo.transform.tag == "Hookable" && canHook && Input.GetButtonDown("Aim"))
+        { 
             Debug.Log("click");
             GraplingHookVisual.SetActive(true);
             StartCoroutine(lerpPosition(player.transform.position, hitInfo.transform.position, timeToReachTarget));
@@ -58,6 +59,6 @@ public class GraplingHook : MonoBehaviour
         player.GetComponent<CharacterController>().enabled = true;
  
     }
-    
+
 }
 

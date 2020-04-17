@@ -6,7 +6,6 @@ public class ItemController : MonoBehaviour
 {
     [HideInInspector] public int itemID;
     public GameObject item;
-    Player player;
     private GameObject itemGameObject;
 
     // Start is called before the first frame update
@@ -21,12 +20,9 @@ public class ItemController : MonoBehaviour
     {
         if (id == itemID)
         {
-            print("Enter!");
             //AudioManager.audioManager.PlaySFXObject(AudioManager.audioManager.sfxObjects[0]);
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            player.AddItem(itemGameObject);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<GraplingHook>().canHook = true;
             Destroy(itemGameObject);
-            
         }
     }
 

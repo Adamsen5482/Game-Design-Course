@@ -4,42 +4,55 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private List<GameObject> items = new List<GameObject>();
-
-    public void AddItem(GameObject item)
+    #region Player instance
+    public static Player player
     {
-        items.Add(item);
+        get
+        {
+            return instance;
+        }
+
+        set
+        {
+            if (instance != null)
+            {
+                Destroy(value.gameObject);
+                return;
+            }
+
+            instance = value;
+        }
+    }
+    private static Player instance = null; // Singleton instance
+    #endregion
+
+    private void Awake()
+    {
+        instance = this;
     }
 
-    public void RemoveItem(GameObject item)
+    private Item item;
+
+    public void SetItem(Item item)
     {
-        items.Remove(item);
+        this.item = item;
     }
 
-    // Only for testiing
-    public void PrintItem()
+    public Item GetItem()
     {
-        print(items[0]);
+        return item;
     }
 
     public bool CanHook()   
     {
-        bool hook = false, rope = false;
-        /*
-        foreach (GameObject item in items)
+        if (item == null)
         {
-            hook = item.GetComponent<Item>().itemType == Item.ItemType.Hook ? true : false;
-            rope = item.GetComponent<Item>().itemType == Item.ItemType.Rope ? true : false;
+            return false;
         }
-        */
-        //return (hook && rope) ? true : false; 
-
-        foreach (GameObject item in items)
-        {
-            rope = item.GetComponent<Item>().itemType == Item.ItemType.Rope ? true : false;
+        else
+        {   
+            return item.itemType == Item.ItemType.Rope ? true : false;
         }
-
-        return rope ? true : false;        
     }
     
 }
