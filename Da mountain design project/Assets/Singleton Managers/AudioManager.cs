@@ -254,6 +254,9 @@ public class AudioManager : MonoBehaviour
 
     public void AddMusicObject(MusicObject musicObject, bool inGame)
     {
+        availableMusicObjects.Add(musicObject);
+
+        /*
         if (inGame)
         {
             availableMusicObjects.Add(musicObject);
@@ -262,6 +265,7 @@ public class AudioManager : MonoBehaviour
         {
             availableUIMusicObjects.Add(musicObject);
         }
+        */
     }
 
     public void AddUIMusicObject(MusicObject musicObject)

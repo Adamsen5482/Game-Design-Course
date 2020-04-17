@@ -61,14 +61,14 @@ public class GameManager : MonoBehaviour
         // Can be done when having multiple background music clips. 
         if (Time.time - t >= AudioManager.audioManager.musicSource.clip.length)
         {
-            /*
+            
             musicObject2 = inGame ? AudioManager.audioManager.RandomMusicObject() : AudioManager.audioManager.RandomUIMusicObject();
             AudioManager.audioManager.PlayMusicWithCrossFade(musicObject2, transitionTime);
             transitionTime = musicObject2.transitionTime;
             AudioManager.audioManager.AddMusicObject(musicObject1, inGame);
             t = Time.time;
             AudioManager.audioManager.activeMusicSource = false;
-            */
+            
 
             //SwitchMusic(inGame);
         }
@@ -77,19 +77,17 @@ public class GameManager : MonoBehaviour
             
             if (Time.time - t >= AudioManager.audioManager.musicSource2.clip.length - transitionTime)
             {
-                /*
+                
                 musicObject1 = inGame ? AudioManager.audioManager.RandomMusicObject() : AudioManager.audioManager.RandomUIMusicObject();
                 AudioManager.audioManager.PlayMusicWithCrossFade(musicObject1, transitionTime);
                 transitionTime = musicObject1.transitionTime;
                 AudioManager.audioManager.AddMusicObject(musicObject2, inGame);
                 t = Time.time;
                 AudioManager.audioManager.activeMusicSource = true;
-                */
+                
                 //SwitchMusic(inGame);
                 
             }
-
-            
             
         }
 
