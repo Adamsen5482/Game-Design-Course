@@ -9,18 +9,36 @@ public class leaderboard : MonoBehaviour
     public string[] names;
     public float[] times;
 
-    // Start is called before the first frame update
-    void OnEnable()
+    public static leaderboard instance = null;
+
+
+    void Awake()
     {
+
+        if (instance == null)
+
+            instance = this;
+
+        else if (instance != this)
+
+            Destroy(gameObject);
+       
+    }
+    // Start is called before the first frame update
+   public void OnEnable()
+    {
+        
+
         bool playerhaspos = false;
         for (int i = 0; i < names.Length; i++)
         {
             Text namepos =  transform.GetChild(i).GetComponent<Text>();
             Text timetext = namepos.transform.GetChild(0).GetComponent<Text>();
-            if (timer.currentTime < times[i] && playerhaspos == false && timer.notWon == false)
+            float currentTime = PlayerPrefs.GetFloat("time");
+            if (currentTime < times[i] && playerhaspos == false)
             {
                 playerhaspos = true;
-                timetext.text = fixtime(timer.currentTime);
+                timetext.text = fixtime(currentTime);
                 timetext.fontStyle = FontStyle.Bold;
                 namepos.text = "YOU";
                 namepos.fontStyle = FontStyle.Bold;

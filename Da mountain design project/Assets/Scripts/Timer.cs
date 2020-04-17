@@ -46,6 +46,7 @@ public class Timer : MonoBehaviour
             string min = ((int)currentTime / 60).ToString();
             string sec = (currentTime % 60).ToString("f0");
             timer.text = min+ ":" +sec;
+            PlayerPrefs.SetFloat("time", currentTime);
         }
     }
 }

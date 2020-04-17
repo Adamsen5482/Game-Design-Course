@@ -1,16 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class fadeIn : MonoBehaviour
 {
     private float t;
     public GameObject winCanvas;
+    public Text wintext;
 
     // Start is called before the first frame update
     void Start()
     {
         GetComponent<CanvasGroup>().alpha = 0;
+        float currentTime = PlayerPrefs.GetFloat("time");
+        string min = ((int)currentTime / 60).ToString();
+        string sec = (currentTime % 60).ToString("f0");
+        wintext.text = "YOUR TIME: \n" + min + " minutes and " + sec + " seconds";
+       
     }
 
     // Update is called once per frame
