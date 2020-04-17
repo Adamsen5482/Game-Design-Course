@@ -27,7 +27,9 @@ namespace climb
         public float moveSpeed = 4;
         public float rotateSpeed = 9;
         public float jumpSpeed = 15;
-
+        public float moveAmountright;
+        public float moveAmountback;
+        public float moveAmountleft;
         bool climfOff;
         float climbTimer;
         bool OnGround;
@@ -61,6 +63,9 @@ namespace climb
             anim = GetComponentInChildren<Animator>();
             fc = GetComponent<FreeClimb>();
             anim.transform.GetChild(0).GetComponent<Animator>();
+            anim.SetBool("back", false);
+            anim.SetBool("right", false);
+            anim.SetBool("forward", false);
         }
 
         // Update is called once per frame
@@ -75,6 +80,9 @@ namespace climb
             horizontal = Input.GetAxis("Horizontal");
             vertical = Input.GetAxis("Vertical");
             moveAmount = Mathf.Clamp01((Mathf.Abs(horizontal) + Mathf.Abs(vertical)));
+            moveAmountright = Mathf.Clamp01((Mathf.Abs(horizontal) + Mathf.Abs(vertical)));
+            moveAmountback = Mathf.Clamp01((Mathf.Abs(horizontal) + Mathf.Abs(vertical)));
+            moveAmountleft = Mathf.Clamp01((Mathf.Abs(horizontal) + Mathf.Abs(vertical)));
 
 
         }
@@ -139,15 +147,68 @@ namespace climb
                 }
 
             }
+
+
+
             anim.SetFloat("Moving", moveAmount);
+            anim.SetFloat("Movingback", moveAmountback);
+            anim.SetFloat("Movingright", moveAmountright);
+            anim.SetFloat("Movingleft", moveAmountleft);
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                anim.SetBool("forward", true);
+                anim.SetFloat("Movingback", 0);
+                anim.SetFloat("Movingright", 0);
+                anim.SetFloat("Movingleft", 0);
+                anim.SetBool("right", false);
+                anim.SetBool("back", false);
+                Debug.Log("player is running forwards");
+            }
+            else anim.SetBool("forward", false);
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                anim.SetBool("right", true);
+                anim.SetFloat("Moving", 0);
+                anim.SetFloat("Movingback", 0);
+                anim.SetFloat("Movingleft", 0);
+                anim.SetBool("forward", false);
+                anim.SetBool("back", false);
+                Debug.Log("player is running forwards");
+            }
+            else anim.SetBool("right", false);
+            if (Input.GetKey(KeyCode.A))
+            {
+                anim.SetBool("left", true);
+                anim.SetFloat("Moving", 0);
+                anim.SetFloat("Movingback", 0);
+                anim.SetBool("forward", false);
+                anim.SetBool("back", false);
+                anim.SetBool("right", false);
+                Debug.Log("player is running forwards");
+            }
+
+            else anim.SetBool("left", false);
+            if (Input.GetKey(KeyCode.S))
+            {
+                anim.SetBool("back", true);
+                anim.SetFloat("Moving", 0);
+                anim.SetFloat("Movingright", 0);
+                anim.SetFloat("Movingleft", 0);
+                anim.SetBool("right", false);
+                anim.SetBool("forward", false);
+
+                Debug.Log("player is running backwards");
+            }
+            else anim.SetBool("back", false);
 
 
-            anim.SetFloat("move", moveAmount);
 
-            anim.SetBool("OnAir", !OnGround);
+
 
         }
-
+  
 
         void climb()
         {

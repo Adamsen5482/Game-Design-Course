@@ -23,8 +23,9 @@ public class win : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.transform.tag == "Player"){
             timer.notWon = false;
-            string min = ((int)timer.currentTime / 60).ToString();
-            string sec = (timer.currentTime % 60).ToString("f0");
+            float currentTime = PlayerPrefs.GetFloat("time");
+            string min = ((int)currentTime / 60).ToString();
+            string sec = (currentTime % 60).ToString("f0");
             winTime.text = "YOUR TIME: \n" + min + " minutes and " + sec + " seconds";
             //winCanvas.SetActive(true);
             //new line
