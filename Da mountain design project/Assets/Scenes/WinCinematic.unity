@@ -20,9 +20,9 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.8301887, g: 0.6432003, b: 0.08223567, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 0, b: 0.010550499, a: 1}
+  m_AmbientEquatorColor: {r: 0.15879235, g: 3.2873485, b: 0, a: 1}
+  m_AmbientGroundColor: {r: 0.1872549, g: 0, b: 0.15784314, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
@@ -2708,6 +2708,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 936004421}
   m_CullTransparentMesh: 0
+--- !u!1001 &1082458205
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1581380882279712356, guid: cf4995edaf83fbf41ba68c323ed55cb8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -41.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581380882279712356, guid: cf4995edaf83fbf41ba68c323ed55cb8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 91.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581380882279712356, guid: cf4995edaf83fbf41ba68c323ed55cb8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -93.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581380882279712356, guid: cf4995edaf83fbf41ba68c323ed55cb8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581380882279712356, guid: cf4995edaf83fbf41ba68c323ed55cb8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.03500059
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581380882279712356, guid: cf4995edaf83fbf41ba68c323ed55cb8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.9993873
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581380882279712356, guid: cf4995edaf83fbf41ba68c323ed55cb8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581380882279712356, guid: cf4995edaf83fbf41ba68c323ed55cb8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581380882279712356, guid: cf4995edaf83fbf41ba68c323ed55cb8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -355.988
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581380882279712356, guid: cf4995edaf83fbf41ba68c323ed55cb8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581380882279712356, guid: cf4995edaf83fbf41ba68c323ed55cb8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -179.99998
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581380882279712363, guid: cf4995edaf83fbf41ba68c323ed55cb8,
+        type: 3}
+      propertyPath: m_Name
+      value: wind
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cf4995edaf83fbf41ba68c323ed55cb8, type: 3}
 --- !u!1 &1087985382
 GameObject:
   m_ObjectHideFlags: 0
@@ -3805,7 +3874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winCanvas: {fileID: 1557065708}
-  wintext: {fileID: 0}
+  wintext: {fileID: 2010445696}
 --- !u!225 &1557065711
 CanvasGroup:
   m_ObjectHideFlags: 0
