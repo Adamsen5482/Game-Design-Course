@@ -39,6 +39,7 @@ public class GraplingHook : MonoBehaviour
             Debug.Log("click");
             GraplingHookVisual.SetActive(true);
             StartCoroutine(lerpPosition(player.transform.position, hitInfo.transform.position, timeToReachTarget));
+            canHook = false;
         }
     }
 
