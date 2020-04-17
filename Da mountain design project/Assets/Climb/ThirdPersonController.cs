@@ -173,7 +173,7 @@ namespace climb
                 anim.SetFloat("Moving", 0);
                 anim.SetFloat("Movingback", 0);
                 anim.SetFloat("Movingleft", 0);
-                anim.SetBool("forward", false);
+                anim.SetBool("forward", true);
                 anim.SetBool("back", false);
                 Debug.Log("player is running forwards");
             }
@@ -183,7 +183,6 @@ namespace climb
                 anim.SetBool("left", true);
                 anim.SetFloat("Moving", 0);
                 anim.SetFloat("Movingback", 0);
-                anim.SetBool("forward", false);
                 anim.SetBool("back", false);
                 anim.SetBool("right", false);
                 Debug.Log("player is running forwards");
@@ -196,7 +195,6 @@ namespace climb
                 anim.SetFloat("Moving", 0);
                 anim.SetFloat("Movingright", 0);
                 anim.SetFloat("Movingleft", 0);
-                anim.SetBool("right", false);
                 anim.SetBool("forward", false);
 
                 Debug.Log("player is running backwards");
