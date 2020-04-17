@@ -10,6 +10,8 @@ public class GraplingHook : MonoBehaviour
     public Image Crosshair;
     public int timeToReachTarget;
     public bool canHook = false;
+    
+    public GameObject crosshairCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,7 @@ public class GraplingHook : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo) && hitInfo.transform.tag == "Hookable" && canHook && Input.GetButtonDown("Aim"))
         { 
             Debug.Log("click");
+            crosshairCanvas.SetActive(false);
             GraplingHookVisual.SetActive(true);
             StartCoroutine(lerpPosition(player.transform.position, hitInfo.transform.position, timeToReachTarget));
             canHook = false;

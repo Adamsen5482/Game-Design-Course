@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6694,6 +6694,7 @@ MonoBehaviour:
   Crosshair: {fileID: 826812032}
   timeToReachTarget: 2
   canHook: 0
+  crosshairCanvas: {fileID: 1622906605}
 --- !u!1 &1740706967
 GameObject:
   m_ObjectHideFlags: 0
@@ -7814,6 +7815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 0
   item: {fileID: 9142566782301884109, guid: f696e767b2db87c4ba11cd6847a450a7, type: 3}
+  crosshairCanvas: {fileID: 1622906605}
 --- !u!4 &2195549176017931190
 Transform:
   m_ObjectHideFlags: 0

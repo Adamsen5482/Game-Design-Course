@@ -7,6 +7,7 @@ public class ItemController : MonoBehaviour
     [HideInInspector] public int itemID;
     public GameObject item;
     private GameObject itemGameObject;
+    public GameObject crosshairCanvas;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class ItemController : MonoBehaviour
         {
             //AudioManager.audioManager.PlaySFXObject(AudioManager.audioManager.sfxObjects[0]);
             GameObject.FindGameObjectWithTag("Player").GetComponent<GraplingHook>().canHook = true;
+            crosshairCanvas.SetActive(true);
             Destroy(itemGameObject);
         }
     }
