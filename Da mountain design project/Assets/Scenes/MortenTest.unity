@@ -6720,6 +6720,21 @@ MonoBehaviour:
   timeToReachTarget: 2
   canHook: 0
   crosshairCanvas: {fileID: 1622906605}
+--- !u!114 &1739643065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739643060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9bf43ab764365c4c944b14815b61255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winCanvas: {fileID: 1601370819}
+  loseCanvas: {fileID: 1300247822}
+  leaderboardCanvas: {fileID: 437962}
 --- !u!1 &1740706967
 GameObject:
   m_ObjectHideFlags: 0
