@@ -28,7 +28,7 @@ public class waterAttack : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.transform.tag == "Player"){
 
-            print("meh" + other);
+            //print("meh" + other);
             canvas.SetActive(true);
             other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
             //AudioManager.audioManager.PlaySFXObject((int)AudioManager.audioManager.characterObjects[AudioManager.CharacterNum.BodySplash]);

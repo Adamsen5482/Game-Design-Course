@@ -20,7 +20,7 @@ public class hideMouse : MonoBehaviour
         if(winCanvas.active || loseCanvas.active || leaderboardCanvas.active){
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        print("mouseTrue");
+        //print("mouseTrue");
         }
         else{
         Cursor.visible = false;

@@ -31,15 +31,12 @@ public class startButtons : MonoBehaviour
 
     public void Play()
     {
-        //GameManager.gameManager.SwitchMusic(GameManager.gameManager.inGame = true);
         SceneManager.LoadScene("MortenTest"); // which scene is correct?
     }
-
 
     public void Restart()
     {
         AudioManager.audioManager.PlaySFXObject(AudioManager.audioManager.stateObjects[(int)AudioManager.StateNum.Click]);
-        //GameManager.gameManager.SwitchMusic(GameManager.gameManager.inGame = true);
         SceneManager.LoadScene("MortenTest"); // which scene is correct?
     }
 }

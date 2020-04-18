@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    #region GameManager Ínstance
+    #region GameManager Instance
     public static GameManager gameManager
     {
 
@@ -49,17 +49,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
     private void Start()
     {
-        musicObject1 = AudioManager.audioManager.RandomUIMusicObject();
-        AudioManager.audioManager.PlayMusicObject(musicObject1);
-        transitionTime = musicObject1.transitionTime;
-        firstMusic = false;
+        if (firstMusic)
+        {
+            musicObject1 = AudioManager.audioManager.RandomUIMusicObject();
+            AudioManager.audioManager.PlayMusicObject(musicObject1);
+            transitionTime = musicObject1.transitionTime;
+            firstMusic = false;
+        }
         
     }
     
@@ -69,16 +67,6 @@ public class GameManager : MonoBehaviour
         // Can be done when having multiple background music clips. 
         if (Time.time - t >= AudioManager.audioManager.musicSource.clip.length)
         {
-            /*
-            musicObject2 = inGame ? AudioManager.audioManager.RandomMusicObject() : AudioManager.audioManager.RandomUIMusicObject();
-            AudioManager.audioManager.PlayMusicWithCrossFade(musicObject2, transitionTime);
-            transitionTime = musicObject2.transitionTime;
-            AudioManager.audioManager.AddMusicObject(musicObject1, inGame);
-            t = Time.time;
-            AudioManager.audioManager.activeMusicSource = false;
-            
-            */
-
             SwitchMusic(inGame);
         }
         else if (AudioManager.audioManager.musicSource2.clip != null)
@@ -86,17 +74,8 @@ public class GameManager : MonoBehaviour
             
             if (Time.time - t >= AudioManager.audioManager.musicSource2.clip.length - transitionTime)
             {
-                /*
-                musicObject1 = inGame ? AudioManager.audioManager.RandomMusicObject() : AudioManager.audioManager.RandomUIMusicObject();
-                AudioManager.audioManager.PlayMusicWithCrossFade(musicObject1, transitionTime);
-                transitionTime = musicObject1.transitionTime;
-                AudioManager.audioManager.AddMusicObject(musicObject2, inGame);
-                t = Time.time;
-                AudioManager.audioManager.activeMusicSource = true;
-                */
-
-                SwitchMusic(inGame);
-                
+                print("Runs");
+                SwitchMusic(inGame);                
             }
             
         }
@@ -105,38 +84,32 @@ public class GameManager : MonoBehaviour
     
     public void SwitchMusic(bool inGame)
     {
+        //print("Runs");
+
         if (AudioManager.audioManager.activeMusicSource)
         {
             musicObject2 = inGame ? AudioManager.audioManager.RandomMusicObject() : AudioManager.audioManager.RandomUIMusicObject();
-            AudioManager.audioManager.PlayMusicWithCrossFade(musicObject2, transitionTime);
+            AudioManager.audioManager.SceneLoadCrossFade(musicObject2, transitionTime);
             transitionTime = musicObject2.transitionTime;
+            AudioManager.audioManager.AddMusicObject(musicObject1, inGame);
             AudioManager.audioManager.activeMusicSource = false;
         }
         else
         {
             musicObject1 = inGame ? AudioManager.audioManager.RandomMusicObject() : AudioManager.audioManager.RandomUIMusicObject();
-            AudioManager.audioManager.PlayMusicWithCrossFade(musicObject1, transitionTime);
+            AudioManager.audioManager.SceneLoadCrossFade(musicObject1, transitionTime);
             transitionTime = musicObject1.transitionTime;
+            AudioManager.audioManager.AddMusicObject(musicObject2, inGame);
             AudioManager.audioManager.activeMusicSource = true;
         }
 
         t = Time.time;
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void SetInGame()
     {
-        print("Loaded");
-
-        if (firstMusic)
-        {
-            return;
-        }
-
-        SwitchMusic(inGame);
+        inGame = true;
     }
 
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+
 }

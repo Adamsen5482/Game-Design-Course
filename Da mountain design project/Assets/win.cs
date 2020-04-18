@@ -29,6 +29,7 @@ public class win : MonoBehaviour
             winTime.text = "YOUR TIME: \n" + min + " minutes and " + sec + " seconds";
             //winCanvas.SetActive(true);
             //new line
+            GameManager.gameManager.inGame = false;
             SceneManager.LoadScene("WinCinematic");
             other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         }

@@ -129,12 +129,37 @@ public class AudioManager : MonoBehaviour
         // Set the fields of the audio source, then start the coroutine to crossfade
         newSource.clip = musicObject.audioClip;
         newSource.pitch = musicObject.pitch;
-        newSource.volume = musicObject.volume;
+        //newSource.volume = musicObject.volume;
         newSource.Play();
         StartCoroutine(UpdateMusicWithCrossFade(activeSource, newSource, transitionTime));
     }
 
+    public void SceneLoadCrossFade(MusicObject musicObject, float transitionTime = 1.0f)
+    {
+
+        // Determine which source is active
+        AudioSource activeSource = (activeMusicSource) ? musicSource : musicSource2;
+        AudioSource newSource = (activeMusicSource) ? musicSource2 : musicSource;
+
+        // Swap the source
+        activeMusicSource = !activeMusicSource;
+        newSource.clip = musicObject.audioClip;
+        newSource.pitch = musicObject.pitch;
+        newSource.volume = musicObject.volume;
+        newSource.Play();
+        print(newSource.isPlaying);
+        StartCoroutine(SceneLoadCrossFade(activeSource, newSource, transitionTime, musicObject.volume));
+
+    }
+
     public void PauseMusic()
+    {
+        AudioSource activeSource = musicSource.isPlaying ? musicSource : musicSource2;
+
+        activeSource.Pause();
+    }
+
+    public void UnPause()
     {
         AudioSource activeSource = musicSource.isPlaying ? musicSource : musicSource2;
 
@@ -306,17 +331,33 @@ public class AudioManager : MonoBehaviour
     private IEnumerator UpdateMusicWithCrossFade(AudioSource original, AudioSource newSource, float transitionTime)
     {
 
-        for (float t = 0.0f; t < transitionTime; t += Time.deltaTime)
+        for (float t = 0.0f; t <= transitionTime; t += Time.deltaTime)
         {
-            original.volume = (1 - (t / Time.deltaTime)); // Fades out the current source by lowering the volume.
-            newSource.volume = (t / Time.deltaTime); // Fades in the new source by increasing the volume.
+            original.volume = (1 - (t / transitionTime)); // Fades out the current source by lowering the volume.
+            newSource.volume = (t / transitionTime); // Fades in the new source by increasing the volume.
+            //print(Time.deltaTime);
             yield return null;
         }
 
-        print(newSource.volume);
-
         original.Stop();
 
+    }
+
+    private IEnumerator SceneLoadCrossFade(AudioSource original, AudioSource newSource, float transitionTime, float newSourceVolume)
+    {
+        for (float t = 0.0f; t < transitionTime; t += Time.deltaTime)
+        {
+            original.volume = (original.volume - (t / transitionTime)); // Fades out the current source by lowering the volume.
+            newSource.volume = (t / transitionTime) <= newSource.volume ? (t / transitionTime) : newSourceVolume; // Fades in the new source by increasing the volume.
+            yield return null;
+        }
+
+        if (!newSource.isPlaying)
+        {
+            newSource.Play();   
+        }
+
+        original.Stop();
     }
 
     private IEnumerator PauseMusic(AudioSource activeSource, float waitTime = 1.0f)
