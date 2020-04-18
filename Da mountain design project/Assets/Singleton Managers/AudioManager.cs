@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
     #region Audio Clip Objects
     public enum CharacterNum {GrassWalk = 0, GrassRun = 1, GravelWalk = 2, GravelRun = 3, WaterWalk = 4, WaterRun = 5, BodySplash = 6};
     public enum EnvironmentNum {WaterWaves = 0, WindBlows = 1};
-    public enum StateNum {Winning = 0, LeaderboardClick = 1, Click = 2, Confirm = 3, Cancel = 4};
+    public enum StateNum {Winning = 0, LeaderboardClick = 1, Click = 2, Confirm = 3, Cancel = 4, HookClick = 5};
     [Header("Sound Effects")]
     public SfxObject[] characterObjects;
     public SfxObject[] environmentObjects;
@@ -254,9 +254,8 @@ public class AudioManager : MonoBehaviour
 
     public void AddMusicObject(MusicObject musicObject, bool inGame)
     {
-        availableMusicObjects.Add(musicObject);
+        //availableMusicObjects.Add(musicObject);
 
-        /*
         if (inGame)
         {
             availableMusicObjects.Add(musicObject);
@@ -265,7 +264,6 @@ public class AudioManager : MonoBehaviour
         {
             availableUIMusicObjects.Add(musicObject);
         }
-        */
     }
 
     public void AddUIMusicObject(MusicObject musicObject)
@@ -314,6 +312,8 @@ public class AudioManager : MonoBehaviour
             newSource.volume = (t / Time.deltaTime); // Fades in the new source by increasing the volume.
             yield return null;
         }
+
+        print(newSource.volume);
 
         original.Stop();
 

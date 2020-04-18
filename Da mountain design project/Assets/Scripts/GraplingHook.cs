@@ -43,6 +43,7 @@ public class GraplingHook : MonoBehaviour
             GraplingHookVisual.SetActive(true);
             StartCoroutine(lerpPosition(player.transform.position, hitInfo.transform.position, timeToReachTarget));
             canHook = false;
+            AudioManager.audioManager.PlaySFXObject(AudioManager.audioManager.stateObjects[(int)AudioManager.StateNum.HookClick]);
         }
     }
 

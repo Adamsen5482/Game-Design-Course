@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
     private MusicObject musicObject1, musicObject2;
     //private MusicObject uiMusicObject1, uiMusicObject2;
     [HideInInspector] public bool inGame = false;
+    private bool firstMusic = true;
     #endregion
 
     private void Awake()
@@ -47,11 +49,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
     private void Start()
     {
         musicObject1 = AudioManager.audioManager.RandomUIMusicObject();
         AudioManager.audioManager.PlayMusicObject(musicObject1);
         transitionTime = musicObject1.transitionTime;
+        firstMusic = false;
         
     }
     
@@ -61,7 +69,7 @@ public class GameManager : MonoBehaviour
         // Can be done when having multiple background music clips. 
         if (Time.time - t >= AudioManager.audioManager.musicSource.clip.length)
         {
-            
+            /*
             musicObject2 = inGame ? AudioManager.audioManager.RandomMusicObject() : AudioManager.audioManager.RandomUIMusicObject();
             AudioManager.audioManager.PlayMusicWithCrossFade(musicObject2, transitionTime);
             transitionTime = musicObject2.transitionTime;
@@ -69,23 +77,25 @@ public class GameManager : MonoBehaviour
             t = Time.time;
             AudioManager.audioManager.activeMusicSource = false;
             
+            */
 
-            //SwitchMusic(inGame);
+            SwitchMusic(inGame);
         }
         else if (AudioManager.audioManager.musicSource2.clip != null)
         {
             
             if (Time.time - t >= AudioManager.audioManager.musicSource2.clip.length - transitionTime)
             {
-                
+                /*
                 musicObject1 = inGame ? AudioManager.audioManager.RandomMusicObject() : AudioManager.audioManager.RandomUIMusicObject();
                 AudioManager.audioManager.PlayMusicWithCrossFade(musicObject1, transitionTime);
                 transitionTime = musicObject1.transitionTime;
                 AudioManager.audioManager.AddMusicObject(musicObject2, inGame);
                 t = Time.time;
                 AudioManager.audioManager.activeMusicSource = true;
-                
-                //SwitchMusic(inGame);
+                */
+
+                SwitchMusic(inGame);
                 
             }
             
@@ -113,4 +123,20 @@ public class GameManager : MonoBehaviour
         t = Time.time;
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        print("Loaded");
+
+        if (firstMusic)
+        {
+            return;
+        }
+
+        SwitchMusic(inGame);
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 }

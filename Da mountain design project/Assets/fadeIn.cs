@@ -17,7 +17,9 @@ public class fadeIn : MonoBehaviour
         string min = ((int)currentTime / 60).ToString();
         string sec = (currentTime % 60).ToString("f0");
         wintext.text = "YOUR TIME: \n" + min + " minutes and " + sec + " seconds";
-       
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
     }
 
     // Update is called once per frame

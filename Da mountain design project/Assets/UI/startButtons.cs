@@ -23,7 +23,6 @@ public class startButtons : MonoBehaviour
 #if UNITY_EDITOR
         // Application.Quit() does not work in the editor so
         // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
-        AudioManager.audioManager.PlaySFXObject(AudioManager.audioManager.stateObjects[(int)AudioManager.StateNum.Click]);
         UnityEditor.EditorApplication.isPlaying = false;
 #else
          Application.Quit();
@@ -32,7 +31,6 @@ public class startButtons : MonoBehaviour
 
     public void Play()
     {
-        AudioManager.audioManager.PlaySFXObject(AudioManager.audioManager.stateObjects[(int)AudioManager.StateNum.Click]);
         //GameManager.gameManager.SwitchMusic(GameManager.gameManager.inGame = true);
         SceneManager.LoadScene("MortenTest"); // which scene is correct?
     }

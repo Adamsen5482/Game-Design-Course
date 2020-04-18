@@ -18,4 +18,16 @@ public class SfxObject : AudioObject
         audioSource.clip = audioClip != null ? audioClip : null;
         audioSource?.Stop();
     }
+
+    public void UIPlay(AudioSource audioSource)
+    {
+        audioSource.clip = audioClip != null ? audioClip : null;
+        if (audioSource == null)
+        {
+            return;
+        }
+        audioSource.volume = volume;
+        audioSource.pitch = pitch;
+        audioSource?.Play();
+    }
 }

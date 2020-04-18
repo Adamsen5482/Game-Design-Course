@@ -30,7 +30,6 @@ public class win : MonoBehaviour
             //winCanvas.SetActive(true);
             //new line
             SceneManager.LoadScene("WinCinematic");
-
             other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         }
     }

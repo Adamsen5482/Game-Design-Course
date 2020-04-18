@@ -21,7 +21,7 @@ public class ItemController : MonoBehaviour
     {
         if (id == itemID)
         {
-            //AudioManager.audioManager.PlaySFXObject(AudioManager.audioManager.sfxObjects[0]);
+            AudioManager.audioManager.PlaySFXObject(AudioManager.audioManager.stateObjects[(int) AudioManager.StateNum.Confirm]);
             GameObject.FindGameObjectWithTag("Player").GetComponent<GraplingHook>().canHook = true;
             crosshairCanvas.SetActive(true);
             Destroy(itemGameObject);

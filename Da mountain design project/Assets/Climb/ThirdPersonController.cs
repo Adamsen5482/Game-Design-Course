@@ -131,7 +131,7 @@ namespace climb
                 }
             }
 
-            if (Input.GetKeyUp(KeyCode.E))
+            if (Input.GetKeyUp(KeyCode.E) || Input.GetButtonUp("Climb"))
             {
 
                 fc.climbing = !fc.climbing;
@@ -155,7 +155,7 @@ namespace climb
             anim.SetFloat("Movingright", moveAmountright);
             anim.SetFloat("Movingleft", moveAmountleft);
 
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.W) || Input.GetAxis("Vertical") > 0)
             {
                 anim.SetBool("forward", true);
                 anim.SetFloat("Movingback", 0);
@@ -167,7 +167,7 @@ namespace climb
             }
             else anim.SetBool("forward", false);
 
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) || Input.GetAxis("Horizontal") > 0)
             {
                 anim.SetBool("right", true);
                 anim.SetFloat("Moving", 0);
@@ -178,7 +178,7 @@ namespace climb
                 Debug.Log("player is running forwards");
             }
             else anim.SetBool("right", false);
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A) || Input.GetAxis("Horizontal") < 0)
             {
                 anim.SetBool("left", true);
                 anim.SetFloat("Moving", 0);
@@ -189,7 +189,7 @@ namespace climb
             }
 
             else anim.SetBool("left", false);
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S) || Input.GetAxis("Vertical") < 0)
             {
                 anim.SetBool("back", true);
                 anim.SetFloat("Moving", 0);
