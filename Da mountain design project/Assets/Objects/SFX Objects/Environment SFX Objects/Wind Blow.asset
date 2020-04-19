@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 13f1f409d1fc759448909f15c7495b99, type: 3}
   pitch: 1
-  volume: 1
-  volumeScale: 0.037
+  volume: 0.403
+  volumeScale: 1

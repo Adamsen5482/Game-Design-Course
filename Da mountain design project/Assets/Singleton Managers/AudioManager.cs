@@ -147,7 +147,7 @@ public class AudioManager : MonoBehaviour
         newSource.pitch = musicObject.pitch;
         newSource.volume = musicObject.volume;
         newSource.Play();
-        print(newSource.isPlaying);
+        //print(newSource.isPlaying);
         StartCoroutine(SceneLoadCrossFade(activeSource, newSource, transitionTime, musicObject.volume));
 
     }

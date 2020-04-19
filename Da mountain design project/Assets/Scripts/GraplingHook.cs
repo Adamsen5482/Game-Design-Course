@@ -35,7 +35,7 @@ public class GraplingHook : MonoBehaviour
         } else{
             Debug.DrawLine (ray.origin, ray.origin+ray.direction*100 , Color.green);
             Crosshair.GetComponent<Image>().color = new Color32(239, 152 , 154 , 100);
-        }
+        }   
         if (Physics.Raycast(ray, out hitInfo) && hitInfo.transform.tag == "Hookable" && canHook && Input.GetButtonDown("Aim"))
         { 
             Debug.Log("click");
