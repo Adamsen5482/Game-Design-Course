@@ -9,15 +9,12 @@ public class waterAttack : MonoBehaviour
     public UnityEngine.GameObject canvas;
     // Start is called before the first frame update
     AudioSource audioSource;
-    float winColDistance;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = AudioManager.audioManager.environmentObjects[(int)AudioManager.EnvironmentNum.WaterWaves].audioClip;
         audioSource.volume = AudioManager.audioManager.environmentObjects[(int)AudioManager.EnvironmentNum.WaterWaves].volume;
         audioSource.pitch = AudioManager.audioManager.environmentObjects[(int)AudioManager.EnvironmentNum.WaterWaves].pitch;
-        audioSource.PlayOneShot(audioSource.clip);
-        winColDistance = Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("Win").GetComponent<Transform>().position);
     }
 
     // Update is called once per frame
@@ -31,7 +28,11 @@ public class waterAttack : MonoBehaviour
         }
         if (!audioSource.isPlaying)
         {
-            audioSource.PlayOneShot(audioSource.clip);
+            if (GameManager.gameManager.inGame)
+            {
+                audioSource.PlayOneShot(audioSource.clip);
+            }
+            
         }
 
     }

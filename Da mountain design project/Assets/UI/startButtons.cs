@@ -31,6 +31,10 @@ public class startButtons : MonoBehaviour
 
     public void Play()
     {
+        if (GameManager.gameManager != null)
+        {
+            GameManager.gameManager.inGame = true;
+        }
         SceneManager.LoadScene("MortenTest"); // which scene is correct?
     }
 
