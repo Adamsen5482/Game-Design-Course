@@ -10,7 +10,7 @@ namespace climb
         public LayerMask wallMask;
         public CharacterController controller;
         public bool climbing;
-
+        public BoxCollider bc;
         Vector3 wallPoint;
         Vector3 wallNormal;
         //public Rigidbody body;
@@ -69,32 +69,7 @@ namespace climb
 
         public bool DetectSlope()
         {
-            // Raycast with infinite distance to check the slope directly under the player no matter where they are
-            RaycastHit hit;
-            Physics.Raycast(this.transform.position, Vector3.down, out hit, Mathf.Infinity);
-
-            // Saving the normal
-            Vector3 n = hit.normal;
-
-            // Crossing my normal with the player's up vector (if your player rotates I guess you can just use Vector3.up to create a vector parallel to the ground
-            Vector3 groundParallel = Vector3.Cross(transform.up, n);
-
-            // Crossing the vector we made before with the initial normal gives us a vector that is parallel to the slope and always pointing down
-            Vector3 slopeParallel = Vector3.Cross(groundParallel, n);
-            Debug.DrawRay(hit.point, slopeParallel * 10, Color.green);
-
-            // Just the current angle we're standing on
-            float currentSlope = Mathf.Round(Vector3.Angle(hit.normal, transform.up));
-            //Debug.Log(currentSlope);
-
-            // If the slope is on a slope too steep and the player is Grounded the player is pushed down the slope.
-            if (currentSlope >= 110f )
-            {
-                return false;
-               
-            }
             return true;
-
         }
 
 
