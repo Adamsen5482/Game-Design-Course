@@ -7,6 +7,7 @@ public class GraplingHook : MonoBehaviour
 {
     public Transform player;
     public UnityEngine.GameObject GraplingHookVisual;
+    public ShapeObject shape;
     public Image Crosshair;
     public int timeToReachTarget;
     public bool canHook = false;
@@ -52,6 +53,7 @@ public class GraplingHook : MonoBehaviour
         }
         if (Physics.Raycast(ray, out hitInfo) && hitInfo.transform.tag == "Hookable" && Input.GetButtonDown("Aim") && canHook)
         {
+            shape.Hookable = hitInfo.transform;
             Debug.Log("click");
             helper.instance.RemoveMessage("Left click to use rope");
             crosshairCanvas.SetActive(false);

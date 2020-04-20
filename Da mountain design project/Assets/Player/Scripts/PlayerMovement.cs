@@ -45,13 +45,14 @@ public class PlayerMovement : MonoBehaviour
 
             moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-            if (Input.GetButtonDown("Jump") && canMove)
+            if (Input.GetButtonDown("Jump") && canMove && !isSliding)
             {
                 moveDirection.y = jumpSpeed;
                 anim.SetTrigger("Jump");
+                
             }
         }
-
+        Debug.Log(isSliding);
         moveDirection.y -= gravity * Time.deltaTime;
         controller.Move(moveDirection * Time.deltaTime);
 
@@ -99,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
         else if (currentSlope < 45 && controller.isGrounded && isSliding)
         {
             //TimePassed();
-
+            isSliding = false;
             // If enough time has passed the sliding stops. There's no need for these last two if statements, the thing works already, but it's nicer to have the player slide for a little bit more once they get back on the ground
            // if (currentSlope < 45 && MaintainingGround() && isSliding && timePassed > 1f)
            // {
