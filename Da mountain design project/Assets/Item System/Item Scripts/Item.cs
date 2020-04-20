@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [HideInInspector] public int itemID;
+    public int itemID;
 
     public enum ItemType {Hook, Rope};
 

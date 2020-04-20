@@ -45,7 +45,7 @@ public class GraplingHook : MonoBehaviour
         }
         else if (Input.GetButtonDown("AimMode") && inAimMode)
         {
-            helper.instance.RemoveMessage("Press 'Q or PS4 Options' to enable or disable aim mode");
+            helper.instance.RemoveMessage("Press 'Q or PS4 Options' to enable or disable aim mode   ");
             crosshairCanvas.SetActive(false);
             inAimMode = false;
         }

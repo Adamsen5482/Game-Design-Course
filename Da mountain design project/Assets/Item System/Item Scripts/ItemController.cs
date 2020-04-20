@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    [HideInInspector] public int itemID;
+    public int itemID;
     public GameObject item;
     private GameObject itemGameObject;
     public GameObject crosshairCanvas;
@@ -13,8 +13,10 @@ public class ItemController : MonoBehaviour
     void Start()
     {
         GameEvents.gameEvents.onItemPickUpEnter += onItemPickUp;
-        SpawnItem(item);
+        //SpawnItem(item);
         itemGameObject = transform.GetChild(0).gameObject;
+        //print(gameObject.name + " " + itemID);
+
     }
 
     private void onItemPickUp(int id)

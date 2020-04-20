@@ -43,10 +43,13 @@ public class GameManager : MonoBehaviour
     {
         gameManager = this;
         DontDestroyOnLoad(gameObject);
+        /*
         for (int i = 0; i < spawnPoints.Length; i++)
         {
             spawnPoints[i].GetComponent<ItemController>().itemID = i;
+
         }
+        */
     }
 
     private void OnEnable()
@@ -59,6 +62,7 @@ public class GameManager : MonoBehaviour
         if (inGame)
         {
             SwitchMusic(inGame);
+            
         }
         
     }
