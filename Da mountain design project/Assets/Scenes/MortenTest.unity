@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6950,6 +6950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1739643055}
   GraplingHookVisual: {fileID: 1908395883}
+  shape: {fileID: 1908395884}
   Crosshair: {fileID: 826812032}
   timeToReachTarget: 2
   canHook: 0
