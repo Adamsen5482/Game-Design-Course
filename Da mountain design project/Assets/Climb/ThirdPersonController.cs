@@ -66,7 +66,7 @@ namespace climb
             anim.SetBool("back", false);
             anim.SetBool("right", false);
             anim.SetBool("forward", false);
-            StartCoroutine(helper.instance.GetMessage("Press E to climb")); 
+            StartCoroutine(helper.instance.GetMessage("Press 'E' to Climb")); 
         }
 
         // Update is called once per frame
@@ -248,14 +248,14 @@ namespace climb
             */
             playerMovement.enabled = false;
             //Debug.Log("disable controller");
-            helper.instance.RemoveMessage("Press E to climb");
-            StartCoroutine(helper.instance.GetMessage("Press E to walk"));
+            helper.instance.RemoveMessage("Press 'E' to Climb");
+            StartCoroutine(helper.instance.GetMessage("Press 'E' to Walk"));
             
         }
 
         public void EnableController()
         {
-            helper.instance.RemoveMessage("Press E to walk");
+            helper.instance.RemoveMessage("Press 'E' to Walk");
            
             playerMovement.enabled = true;
             //rigid.isKinematic = false;

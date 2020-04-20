@@ -5,6 +5,7 @@ using UnityEngine;
 public class WindAudioTrigger : MonoBehaviour
 {
     AudioSource audioSource;
+    public GameObject player;
 
     private void Start()
     {
@@ -13,23 +14,13 @@ public class WindAudioTrigger : MonoBehaviour
         audioSource.volume = AudioManager.audioManager.environmentObjects[(int)AudioManager.EnvironmentNum.WindBlows].volume;
         audioSource.pitch = AudioManager.audioManager.environmentObjects[(int)AudioManager.EnvironmentNum.WindBlows].pitch;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        audioSource.PlayOneShot(audioSource.clip);
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player") && !audioSource.isPlaying)
-        {
+    private void Update(){
+        if (player.transform.position.y > 70){
+            if (!audioSource.isPlaying)
+            {
             audioSource.PlayOneShot(audioSource.clip);
+            }
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        audioSource.Stop();
     }
 
 }

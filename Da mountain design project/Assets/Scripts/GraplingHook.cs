@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GraplingHook : MonoBehaviour
 {
+    //public LayerMask nonHookable;
     public Transform player;
     public UnityEngine.GameObject GraplingHookVisual;
     public ShapeObject shape;
@@ -41,8 +42,8 @@ public class GraplingHook : MonoBehaviour
         {
             inAimMode = true;
             crosshairCanvas.SetActive(true);
-            helper.instance.RemoveMessage("Press 'Q' to enable/disable aim mode");
-            StartCoroutine(helper.instance.GetMessage("Left click to use rope"));
+            helper.instance.RemoveMessage("Press 'Q' to equip Rope");
+            StartCoroutine(helper.instance.GetMessage("Left-click to use Rope"));
 
         }
         else if (Input.GetButtonDown("AimMode") && inAimMode)
@@ -55,7 +56,7 @@ public class GraplingHook : MonoBehaviour
         {
             shape.Hookable = hitInfo.transform;
             Debug.Log("click");
-            helper.instance.RemoveMessage("Left click to use rope");
+            helper.instance.RemoveMessage("Left-click to use Rope");
             crosshairCanvas.SetActive(false);
             GraplingHookVisual.SetActive(true);
             StartCoroutine(lerpPosition(player.transform.position, hitInfo.transform.position, timeToReachTarget));
