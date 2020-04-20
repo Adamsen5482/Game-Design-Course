@@ -23,9 +23,9 @@ public class ItemController : MonoBehaviour
         {
             AudioManager.audioManager.PlaySFXObject(AudioManager.audioManager.stateObjects[(int) AudioManager.StateNum.Confirm]);
             GameObject.FindGameObjectWithTag("Player").GetComponent<GraplingHook>().canHook = true;
-            crosshairCanvas.SetActive(true);
             Destroy(itemGameObject);
-            StartCoroutine(helper.instance.GetMessage("Left click to aim"));
+            //crosshairCanvas.SetActive(true);
+            //StartCoroutine(helper.instance.GetMessage("Left click to aim"));
         }
     }
 

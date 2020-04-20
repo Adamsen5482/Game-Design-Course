@@ -10,7 +10,7 @@ public class GraplingHook : MonoBehaviour
     public Image Crosshair;
     public int timeToReachTarget;
     public bool canHook = false;
-    
+    private bool inAimMode = false;
     public GameObject crosshairCanvas;
     // Start is called before the first frame update
     void Start()
@@ -35,14 +35,28 @@ public class GraplingHook : MonoBehaviour
         } else{
             Debug.DrawLine (ray.origin, ray.origin+ray.direction*100 , Color.green);
             Crosshair.GetComponent<Image>().color = new Color32(239, 152 , 154 , 100);
-        }   
-        if (Physics.Raycast(ray, out hitInfo) && hitInfo.transform.tag == "Hookable" && canHook && Input.GetButtonDown("Aim"))
-        { 
+        }
+        if (Input.GetButtonDown("AimMode") && canHook && !inAimMode)
+        {
+            inAimMode = true;
+            crosshairCanvas.SetActive(true);
+            StartCoroutine(helper.instance.GetMessage("Press 'Q or PS4 Options' to enable or disable aim mode"));
+
+        }
+        else if (Input.GetButtonDown("AimMode") && inAimMode)
+        {
+            helper.instance.RemoveMessage("Press 'Q or PS4 Options' to enable or disable aim mode");
+            crosshairCanvas.SetActive(false);
+            inAimMode = false;
+        }
+        if (Physics.Raycast(ray, out hitInfo) && hitInfo.transform.tag == "Hookable" && Input.GetButtonDown("Aim") && canHook)
+        {
             Debug.Log("click");
             crosshairCanvas.SetActive(false);
             GraplingHookVisual.SetActive(true);
             StartCoroutine(lerpPosition(player.transform.position, hitInfo.transform.position, timeToReachTarget));
             canHook = false;
+            inAimMode = false;
             AudioManager.audioManager.PlaySFXObject(AudioManager.audioManager.stateObjects[(int)AudioManager.StateNum.HookClick]);
         }
     }
