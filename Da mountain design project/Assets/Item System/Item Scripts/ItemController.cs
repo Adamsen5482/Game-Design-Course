@@ -25,6 +25,7 @@ public class ItemController : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").GetComponent<GraplingHook>().canHook = true;
             crosshairCanvas.SetActive(true);
             Destroy(itemGameObject);
+            StartCoroutine(helper.instance.GetMessage("Left click to aim"));
         }
     }
 

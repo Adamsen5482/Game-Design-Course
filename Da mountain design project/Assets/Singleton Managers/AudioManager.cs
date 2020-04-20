@@ -345,18 +345,18 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator SceneLoadCrossFade(AudioSource original, AudioSource newSource, float transitionTime, float newSourceVolume)
     {
-        for (float t = 0.0f; t < transitionTime; t += Time.deltaTime)
+        for (float t = 0.0f; t <= transitionTime; t += Time.deltaTime)
         {
-            original.volume = (original.volume - (t / transitionTime)); // Fades out the current source by lowering the volume.
-            newSource.volume = (t / transitionTime) <= newSource.volume ? (t / transitionTime) : newSourceVolume; // Fades in the new source by increasing the volume.
+            original.volume = (1 - (t / transitionTime)); // Fades out the current source by lowering the volume.
+            newSource.volume = (t / transitionTime); // Fades in the new source by increasing the volume.
             yield return null;
         }
-
+        /*
         if (!newSource.isPlaying)
         {
             newSource.Play();   
         }
-
+        */
         original.Stop();
     }
 

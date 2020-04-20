@@ -7,6 +7,9 @@ public class helper : MonoBehaviour
     public static helper instance = null;
     Text[] containers;
     Coroutine[] Coroutines;
+    List<string> pastMessages;
+    
+
     void Awake()
     {
 
@@ -22,6 +25,7 @@ public class helper : MonoBehaviour
 
     private void Start()
     {
+        pastMessages = new List<string>();
         containers = new Text[3];
         Coroutines = new Coroutine[3];
         for (int i = 0; i < transform.childCount; i++)
@@ -29,6 +33,7 @@ public class helper : MonoBehaviour
             Transform g = transform.GetChild(i);
             containers[i] = g.GetComponent<Text>();
         }
+        
 
     }
 
@@ -38,24 +43,42 @@ public class helper : MonoBehaviour
       
     }
 
-    public IEnumerator GetMessage(string message)
+    bool check(string message)
     {
-        bool found = false;
-        for (int i = 0; i < containers.Length; i++)
+         for (int i = 0; i < pastMessages.Count; i++)
         {
-            if (containers[i].text == "")
+            if (message == pastMessages[i])
             {
-                found = true;
-                Coroutines[i] = StartCoroutine(MessageTimer(containers[i], message));
-                break;
+                return true;
             }
         }
-        if (!found)
+        return false;
+    }
+
+    public IEnumerator GetMessage(string message)
+    {
+
+        if (!check(message))
         {
-            yield return new WaitForSeconds(5);
-            StartCoroutine(GetMessage(message));
+
+
+            pastMessages.Add(message);
+            bool found = false;
+            for (int i = 0; i < containers.Length; i++)
+            {
+                if (containers[i].text == "")
+                {
+                    found = true;
+                    Coroutines[i] = StartCoroutine(MessageTimer(containers[i], message));
+                    break;
+                }
+            }
+            if (!found)
+            {
+                yield return new WaitForSeconds(5);
+                StartCoroutine(GetMessage(message));
+            }
         }
-     
     }
 
     public void RemoveMessage(string message)

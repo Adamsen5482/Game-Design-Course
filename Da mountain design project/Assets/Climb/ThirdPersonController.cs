@@ -66,6 +66,7 @@ namespace climb
             anim.SetBool("back", false);
             anim.SetBool("right", false);
             anim.SetBool("forward", false);
+            StartCoroutine(helper.instance.GetMessage("Press E to climb")); 
         }
 
         // Update is called once per frame
@@ -155,47 +156,27 @@ namespace climb
             anim.SetFloat("Movingright", moveAmountright);
             anim.SetFloat("Movingleft", moveAmountleft);
 
-            if (Input.GetKey(KeyCode.W) || Input.GetAxis("Vertical") > 0)
+            if (Input.GetKey(KeyCode.W))
             {
                 anim.SetBool("forward", true);
-                anim.SetFloat("Movingback", 0);
-                anim.SetFloat("Movingright", 0);
-                anim.SetFloat("Movingleft", 0);
-                anim.SetBool("right", false);
-                anim.SetBool("back", false);
-                //Debug.Log("player is running forwards");
             }
             else anim.SetBool("forward", false);
 
-            if (Input.GetKey(KeyCode.D) || Input.GetAxis("Horizontal") > 0)
+            if (Input.GetKey(KeyCode.D))
             {
                 anim.SetBool("right", true);
-                anim.SetFloat("Moving", 0);
-                anim.SetFloat("Movingback", 0);
-                anim.SetFloat("Movingleft", 0);
-                anim.SetBool("forward", true);
-                anim.SetBool("back", false);
-                //Debug.Log("player is running forwards");
+
             }
             else anim.SetBool("right", false);
-            if (Input.GetKey(KeyCode.A) || Input.GetAxis("Horizontal") < 0)
+            if (Input.GetKey(KeyCode.A))
             {
                 anim.SetBool("left", true);
-                anim.SetFloat("Moving", 0);
-                anim.SetFloat("Movingback", 0);
-                anim.SetBool("back", false);
-                anim.SetBool("right", false);
-                //Debug.Log("player is running forwards");
             }
 
             else anim.SetBool("left", false);
-            if (Input.GetKey(KeyCode.S) || Input.GetAxis("Vertical") < 0)
+            if (Input.GetKey(KeyCode.S))
             {
                 anim.SetBool("back", true);
-                anim.SetFloat("Moving", 0);
-                anim.SetFloat("Movingright", 0);
-                anim.SetFloat("Movingleft", 0);
-                anim.SetBool("forward", false);
 
                 //Debug.Log("player is running backwards");
             }
@@ -275,13 +256,12 @@ namespace climb
         public void EnableController()
         {
             helper.instance.RemoveMessage("Press E to walk");
-            StartCoroutine(helper.instance.GetMessage("Press E to climb"));
+           
             playerMovement.enabled = true;
             //rigid.isKinematic = false;
             col.enabled = true;
 
             anim.CrossFade("blend", 0.2f);
-            anim.SetBool("OnAir", true);
 
             climfOff = true;
             climbTimer = Time.realtimeSinceStartup;
