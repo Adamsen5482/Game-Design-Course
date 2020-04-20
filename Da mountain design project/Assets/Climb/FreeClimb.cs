@@ -18,9 +18,6 @@ namespace climb
 
         public bool NearWall()
         {
-           
-
-
             return Physics.CheckSphere(transform.position, 3f, wallMask);
 
         }
@@ -28,7 +25,7 @@ namespace climb
         public bool FacingWall()
         {
             RaycastHit hit;
-            var facingWall = Physics.Raycast(transform.position, transform.forward, out hit, controller.radius + .9f, wallMask);
+            var facingWall = Physics.Raycast(transform.position, transform.forward, out hit, controller.radius + 5f, wallMask);
             wallPoint = hit.point;
             wallNormal = hit.normal;
             return facingWall;
