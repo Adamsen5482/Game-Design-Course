@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         rotation.y = transform.eulerAngles.y;
+        StartCoroutine(helper.instance.GetMessage("Press 'Space' to Jump"));
     }
 
     // Update is called once per frame
@@ -49,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 moveDirection.y = jumpSpeed;
                 anim.SetTrigger("Jump");
+                helper.instance.RemoveMessage("Press 'Space' to Jump");
                 
             }
         }

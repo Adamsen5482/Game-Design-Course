@@ -27,7 +27,7 @@ public class ItemController : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").GetComponent<GraplingHook>().canHook = true;
             Destroy(itemGameObject);
             //crosshairCanvas.SetActive(true);
-            StartCoroutine(helper.instance.GetMessage("Press 'Q' to enable/disable aim mode"));
+            StartCoroutine(helper.instance.GetMessage("Press 'Q' to equip Rope"));
         }
     }
 
