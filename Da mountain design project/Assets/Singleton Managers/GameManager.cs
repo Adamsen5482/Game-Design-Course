@@ -49,6 +49,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (inGame)
+        {
+            SwitchMusic(inGame);
+        }
+        
+    }
+
     private void Start()
     {
         if (firstMusic)
@@ -111,5 +125,9 @@ public class GameManager : MonoBehaviour
         inGame = true;
     }
 
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
 }
