@@ -27,7 +27,7 @@ public class ItemController : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").GetComponent<GraplingHook>().canHook = true;
             Destroy(itemGameObject);
             //crosshairCanvas.SetActive(true);
-            //StartCoroutine(helper.instance.GetMessage("Left click to aim"));
+            StartCoroutine(helper.instance.GetMessage("Press 'Q' to enable/disable aim mode"));
         }
     }
 
