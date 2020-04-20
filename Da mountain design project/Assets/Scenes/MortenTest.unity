@@ -809,8 +809,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1528741505}
-  - {fileID: 1222198012}
   - {fileID: 1601370821}
+  - {fileID: 1222198012}
   - {fileID: 1300247823}
   - {fileID: 437963}
   m_Father: {fileID: 0}
@@ -5914,7 +5914,7 @@ Transform:
   - {fileID: 357880746}
   - {fileID: 1204149401}
   m_Father: {fileID: 219001695}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1612888405
 GameObject:
@@ -6053,7 +6053,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!224 &1622906609
 RectTransform:
@@ -7877,7 +7877,7 @@ PrefabInstance:
     - target: {fileID: 8153867326916106276, guid: 1ede9fcc30745b64dbdccd47769fbdc7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8153867326916106276, guid: 1ede9fcc30745b64dbdccd47769fbdc7,
         type: 3}
