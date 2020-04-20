@@ -7,6 +7,7 @@ public class GraplingHook : MonoBehaviour
 {
     public Transform player;
     public UnityEngine.GameObject GraplingHookVisual;
+    public ShapeObject shape;
     public Image Crosshair;
     public int timeToReachTarget;
     public bool canHook = false;
@@ -40,18 +41,21 @@ public class GraplingHook : MonoBehaviour
         {
             inAimMode = true;
             crosshairCanvas.SetActive(true);
-            StartCoroutine(helper.instance.GetMessage("Press 'Q or PS4 Options' to enable or disable aim mode"));
+            helper.instance.RemoveMessage("Press 'Q' to enable/disable aim mode");
+            StartCoroutine(helper.instance.GetMessage("Left click to use rope"));
 
         }
         else if (Input.GetButtonDown("AimMode") && inAimMode)
         {
-            helper.instance.RemoveMessage("Press 'Q or PS4 Options' to enable or disable aim mode   ");
+            
             crosshairCanvas.SetActive(false);
             inAimMode = false;
         }
         if (Physics.Raycast(ray, out hitInfo) && hitInfo.transform.tag == "Hookable" && Input.GetButtonDown("Aim") && canHook)
         {
+            shape.Hookable = hitInfo.transform;
             Debug.Log("click");
+            helper.instance.RemoveMessage("Left click to use rope");
             crosshairCanvas.SetActive(false);
             GraplingHookVisual.SetActive(true);
             StartCoroutine(lerpPosition(player.transform.position, hitInfo.transform.position, timeToReachTarget));
