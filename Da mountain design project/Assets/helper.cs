@@ -33,13 +33,21 @@ public class helper : MonoBehaviour
             Transform g = transform.GetChild(i);
             containers[i] = g.GetComponent<Text>();
         }
-        
+    
+        StartCoroutine(GetMessage("Press 'E' to Climb")); 
+        StartCoroutine(GetMessage("Press 'Space' to Jump")); 
 
     }
-
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.E)) {
+            RemoveMessage("Press 'E' to Climb");
+        }
+
+        if (Input.GetKey(KeyCode.Space)) {
+            RemoveMessage("Press 'Space' to Jump");
+        }
       
     }
 
