@@ -10,7 +10,7 @@ namespace climb
         public LayerMask wallMask;
         public CharacterController controller;
         public bool climbing;
-        public BoxCollider bc;
+
         Vector3 wallPoint;
         Vector3 wallNormal;
         //public Rigidbody body;
